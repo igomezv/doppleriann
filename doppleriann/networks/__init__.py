@@ -22,7 +22,10 @@ from .net_blocks import (
 )
 
 # --- Model Architectures ---
+from .aes import VaeCNN1D, AeCNN1D
 from .cnns import ShellCNN1D, ShellCNN1DDual, ShellCNN2D, ShellCNN2Channel
+from .cvae import CondVaeCNN1D
+from .kann import KAN
 from .mlp import MLP
 
 __all__ = [
@@ -39,10 +42,13 @@ __all__ = [
     "sampling",
 
     # Model Architectures
-
+    "VaeCNN1D",
+    "AeCNN1D",
+    "CondVaeCNN1D",
     "ShellCNN1D",
     "ShellCNN1DDual",
     "ShellCNN2D",
     "ShellCNN2Channel",
+    "KAN",
     "MLP",
 ]

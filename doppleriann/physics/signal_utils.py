@@ -237,7 +237,7 @@ def generate_periodogram_test(**kwargs):
         plot : bool, optional
             If True, plot periodograms.
         savefig : bool, optional
-            If True, save plots to /img directory.
+            If True, save plots to output_dir.
 
     Returns
     -------
@@ -259,59 +259,130 @@ def generate_periodogram_test(**kwargs):
     period = kwargs.get('period', None)
     min_period = kwargs.get('min_period', 5)
     max_period = kwargs.get('max_period', 800)
-    fap = kwargs.get('fap', 0.1)
+    fap = kwargs.get('fap', 0.01)
     plot = kwargs.get('plot', False)
     output_dir = kwargs.get('output_dir', 'img')
     savefig = kwargs.get('savefig', False)
 
-    # Load the data to test with different period
     fapLevels = np.array([fap])
 
     # Compute GLS periodograms
-    clp, plevels = periodogram(real_rv, dates, err=None, fap=fap, min_period=min_period, max_period=max_period)
-    clppred, plevelspred = periodogram(pred_rv, dates, err=None, fap=fap, min_period=min_period, max_period=max_period)
-    clpDSTest, pDSlevelsTest = periodogram(pred_ds, dates, err=None, fap=fap, min_period=min_period, max_period=max_period)
+    clp, plevels = periodogram(real_rv, dates, err=None, fap=fap,
+                               min_period=min_period, max_period=max_period)
+    clppred, plevelspred = periodogram(pred_rv, dates, err=None, fap=fap,
+                                       min_period=min_period, max_period=max_period)
+    clpDSTest, pDSlevelsTest = periodogram(pred_ds, dates, err=None, fap=fap,
+                                           min_period=min_period, max_period=max_period)
 
     fig = None
     ds_size = None if ds_size == 0.0 else ds_size
+
     if plot:
-        fig, axs = plt.subplots(1, 2, figsize=(12, 6))
-        scale_factor = 1.5
-        base_fontsize = 10
+        # ---- Global style for cleaner publication-quality plots ----
+        plt.rcParams.update({
+            "figure.dpi": 140,
+            "savefig.dpi": 400,
+            "axes.titlesize": 20,
+            "axes.labelsize": 18,
+            "xtick.labelsize": 15,
+            "ytick.labelsize": 15,
+            "legend.fontsize": 16,
+        })
 
-        # --- First subplot: RVs ---
-        axs[0].plot(1. / clp.freq, clp.power, 'r.-', label='RV CCF', alpha=0.5, linewidth=4.5)
-        axs[0].plot(1. / clppred.freq, clppred.power, 'b.-', label='RV neural prediction', alpha=0.5, linewidth=4.5)
-        axs[0].plot([1/min(clp.freq), 1/max(clp.freq)], [plevels]*2, '--', label="FAP = %4.1f%%" % (fapLevels*100))
+        fig, axs = plt.subplots(1, 2, figsize=(14, 6.5), constrained_layout=True)
+
+        title_fs = 22
+        label_fs = 20
+        tick_fs = 17
+        legend_fs = 16
+        line_w = 2.8
+        marker_sz = 3.0
+        alpha_main = 0.8
+
+        # =========================
+        # First subplot: RVs
+        # =========================
+        axs[0].plot(
+            1.0 / clp.freq, clp.power,
+            color='red', marker='o', markersize=marker_sz,
+            linewidth=line_w, alpha=alpha_main,
+            label='RV CCF'
+        )
+        axs[0].plot(
+            1.0 / clppred.freq, clppred.power,
+            color='blue', marker='o', markersize=marker_sz,
+            linewidth=line_w, alpha=alpha_main,
+            label='RV neural prediction'
+        )
+        axs[0].axhline(
+            y=plevels, linestyle='--', linewidth=1.6,
+            color='tab:blue', label=f'FAP = {fapLevels[0] * 100:.1f}%'
+        )
+
         if ds_size is not None and period is not None:
-            axs[0].set_title(f'Injected signal: period {period} days | DS: {ds_size} m/s',
-                             fontsize=scale_factor * base_fontsize)
+            label_text = f'Injected signal\nP = {period} d | DS = {ds_size} m/s'
         else:
-            axs[0].set_title('Without injected signal',
-                             fontsize=scale_factor * base_fontsize)
-        axs[0].set_xlabel("Period (days)", fontsize=scale_factor * base_fontsize)
-        axs[0].set_ylabel("Power", fontsize=scale_factor * base_fontsize)
+            label_text = 'Without injected signal'
+
+        axs[0].text(
+            0.03, 0.65,
+            label_text,
+            transform=axs[0].transAxes,
+            fontsize=title_fs,
+            verticalalignment='top'
+        )
+
+        axs[0].set_xlabel("Period (days)", fontsize=label_fs)
+        axs[0].set_ylabel("Power", fontsize=label_fs)
         axs[0].set_xscale('log')
-        axs[0].legend(prop={'size': scale_factor * base_fontsize})
+        axs[0].tick_params(axis='both', which='major', labelsize=tick_fs)
+        axs[0].tick_params(axis='both', which='minor', labelsize=tick_fs - 1)
+        axs[0].legend(loc='upper left', fontsize=legend_fs, frameon=True)
 
-        # --- Second subplot: DS predictions ---
-        axs[1].plot(1. / clpDSTest.freq, clpDSTest.power, 'b.-', label='DS neural prediction')
-        axs[1].plot([1 / min(clpDSTest.freq), 1 / max(clpDSTest.freq)], [pDSlevelsTest] * 2, '--',
-                    label="FAP = %4.1f%%" % (fapLevels * 100))
-        axs[1].set_xlabel("Period (days)", fontsize=scale_factor * base_fontsize)
-        axs[1].set_ylabel("Power", fontsize=scale_factor * base_fontsize)
+        # =========================
+        # Second subplot: DS predictions
+        # =========================
+        axs[1].plot(
+            1.0 / clpDSTest.freq, clpDSTest.power,
+            color='blue', marker='o', markersize=marker_sz,
+            linewidth=1.6, alpha=0.9,
+            label='DS neural prediction'
+        )
+        axs[1].axhline(
+            y=pDSlevelsTest, linestyle='--', linewidth=1.6,
+            color='tab:blue', label=f'FAP = {fapLevels[0] * 100:.1f}%'
+        )
+
+        axs[1].set_xlabel("Period (days)", fontsize=label_fs)
+        axs[1].set_ylabel("Power", fontsize=label_fs)
         axs[1].set_xscale('log')
-        axs[1].legend(loc='center', prop={'size': scale_factor * base_fontsize})
-
-        plt.tight_layout()
+        axs[1].tick_params(axis='both', which='major', labelsize=tick_fs)
+        axs[1].tick_params(axis='both', which='minor', labelsize=tick_fs - 1)
+        axs[1].legend(loc='upper left', fontsize=legend_fs, frameon=True)
+        axs[1].text(
+                    0.03, 0.65,
+                    label_text,
+                    transform=axs[1].transAxes,
+                    fontsize=title_fs,
+                    verticalalignment='top'
+                )
 
         if savefig:
             os.makedirs(output_dir, exist_ok=True)
-            out_path = os.path.join(output_dir, f"{prefix_name}_{spec_type}_combined_periodogram.png")
-            plt.savefig(out_path, dpi=300)
+            out_path = os.path.join(
+                output_dir,
+                f"{prefix_name}_{spec_type}_combined_periodogram"
+            )
+            fig.savefig(out_path+".png", dpi=400, bbox_inches='tight')
+            fig.savefig(out_path+".pdf", bbox_inches='tight')
             print(f"[INFO] Periodogram saved to: {out_path}")
 
-    return {'fig': fig, 'clp_rv_real': clp, 'clp_rv_pred': clppred, 'clp_ds_pred': clpDSTest}
+    return {
+        'fig': fig,
+        'clp_rv_real': clp,
+        'clp_rv_pred': clppred,
+        'clp_ds_pred': clpDSTest
+    }
 
 
 def prior_transform(u):

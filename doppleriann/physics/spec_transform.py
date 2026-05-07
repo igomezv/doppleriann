@@ -10,7 +10,6 @@ mask the spectra, or get the temperature given the flux through interpolation.
 
 """
 
-
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
@@ -29,13 +28,15 @@ class SpectrumData:
         Array of wavelength values (in Angstroms or nanometers)
         corresponding to the input spectra.
     """
+
     def __init__(self, wavelengths):
         self.wavelengths = wavelengths
         # Speed of light in m/s
-        self.c = 299792458.
+        self.c = 299792458.0
 
-    def shell_diagram(self, spec_input, master_spec, spec_err, n_reso,
-                      scale_factor=1.0, num_limits_factor=0.0):
+    def shell_diagram(
+        self, spec_input, master_spec, spec_err, n_reso, scale_factor=1.0, num_limits_factor=0.0
+    ):
         """
         Generate a shell representation of the spectrum based on gradients
         and flux values.
@@ -68,6 +69,7 @@ class SpectrumData:
                 - mean_wave_map : np.ndarray
                     Mean wavelength per bin.
         """
+        # scale_factor ~ 1e5 gives grad in units of flux-change per resolution element (c/R ~ 3 km/s for HARPS-N R=115000), yielding axis values of ~±15 (flux) and ~±30 (temp)
         c = self.c / scale_factor
         master = master_spec[1:].copy()
         spec = spec_input[1:].copy()
@@ -100,8 +102,10 @@ class SpectrumData:
                     shell_map[i_f - 1, i_g - 1] = np.mean(delta_obs[index])
                     grad_space_sq = ((grad_space[i_g - 1] + grad_space[i_g]) / 2) ** 2
                     spec_err_sq = np.mean(spec_err[index]) ** 2 if valid_points > 0 else 0
-                    density_map[i_f - 1, i_g - 1] = (grad_space_sq / spec_err_sq) * valid_points if spec_err_sq > 0 else 0
-                    
+                    density_map[i_f - 1, i_g - 1] = (
+                        (grad_space_sq / spec_err_sq) * valid_points if spec_err_sq > 0 else 0
+                    )
+
                     # Store mean gradient and mean wavelength per bin.
                     mean_grad_map[i_f - 1, i_g - 1] = np.mean(grad[index])
                     mean_wave_map[i_f - 1, i_g - 1] = np.mean(wave[index])
@@ -113,22 +117,28 @@ class SpectrumData:
 
         y_m = (y_space[:-1] + y_space[1:]) / 2
         grad_m = (grad_space[:-1] + grad_space[1:]) / 2
-        
+
         shell_df = pd.DataFrame(shell_map, columns=grad_m.round(2), index=np.flip(y_m.round(2)))
 
         # Package additional statistics
         shell_stats = {
-            'shell_df': shell_df,
-            'density_map': density_map,
-            'mean_grad_map': mean_grad_map,
-            'mean_wave_map': mean_wave_map,
+            "shell_df": shell_df,
+            "density_map": density_map,
+            "mean_grad_map": mean_grad_map,
+            "mean_wave_map": mean_wave_map,
         }
 
         return shell_stats
 
-
-    def planet_inj(self, full_spec_data, dates, doppler_shift_amplitude,
-                   period_days=20.0, reference_date=None, phase_offset=0):
+    def planet_inj(
+        self,
+        full_spec_data,
+        dates,
+        doppler_shift_amplitude,
+        period_days=20.0,
+        reference_date=None,
+        phase_offset=0,
+    ):
         """
         Injects a planetary signal by applying a Doppler shift to the spectral time series given a period and semi amplitude.
 
@@ -161,15 +171,15 @@ class SpectrumData:
         if reference_date is None:
             reference_date = dates[0]
 
-        phase_values = (2 * np.pi * (dates - reference_date) / period_days)
+        phase_values = 2 * np.pi * (dates - reference_date) / period_days
         # Apply a random phase shift to introduce variability
         phase_values = (phase_values + phase_offset) % (2 * np.pi)
 
         modulated_doppler_shifts = doppler_shift_amplitude * np.sin(phase_values)
-    
+
         if len(full_spec_data) < len(modulated_doppler_shifts):
-            modulated_doppler_shifts = modulated_doppler_shifts[:len(full_spec_data)]
-            phase_values = phase_values[:len(full_spec_data)]
+            modulated_doppler_shifts = modulated_doppler_shifts[: len(full_spec_data)]
+            phase_values = phase_values[: len(full_spec_data)]
 
         master_spec = np.mean(full_spec_data, axis=0)
         gradient = np.gradient(master_spec, self.wavelengths)
@@ -181,10 +191,10 @@ class SpectrumData:
             injected_spectra[i, :] = full_spec_data[i, :] + delta_flux
 
         return injected_spectra, modulated_doppler_shifts, phase_values
-    
-    
-    def inject_random_doppler_shifts(self, full_spec_data, 
-                                     doppler_shift_range=(0.05, 0.2), seed=None):
+
+    def inject_random_doppler_shifts(
+        self, full_spec_data, doppler_shift_range=(0.05, 0.2), seed=None
+    ):
         """
         Apply random Doppler shifts to each spectrum independently.
 
@@ -230,9 +240,9 @@ class SpectrumData:
 
         return injected_spectra, doppler_shifts, phases_dummy
 
-
-    def kitcat_filtering_mask(self, full_spec_data, 
-                              mask_dir='data/mask_kitcatkitcat_CCF_mask_Sun.npz'):
+    def kitcat_filtering_mask(
+        self, full_spec_data, mask_dir="data/mask_kitcatkitcat_CCF_mask_Sun.npz"
+    ):
         """
         Apply a spectral mask based on the KITCAT CCF line mask.
 
@@ -252,29 +262,35 @@ class SpectrumData:
         """
         mask_data = np.load(mask_dir)
         try:
-            mask_wave = mask_data['mask_wave']
-            mask_weight = mask_data['mask_weight']
-            mask_left = mask_data['mask_left']
-            mask_right = mask_data['mask_right']
+            mask_wave = mask_data["mask_wave"]
+            mask_weight = mask_data["mask_weight"]
+            mask_left = mask_data["mask_left"]
+            mask_right = mask_data["mask_right"]
         except:
-            mask_wave   = mask_data['wave']
-            mask_weight = mask_data['line_depth']
-            mask_left   = mask_data['wave_left']
-            mask_right  = mask_data['wave_right']
-        
+            mask_wave = mask_data["wave"]
+            mask_weight = mask_data["line_depth"]
+            mask_left = mask_data["wave_left"]
+            mask_right = mask_data["wave_right"]
+
         filtered_flux_dataset = np.zeros_like(full_spec_data)
-        final_mask = np.zeros_like(self.wavelengths, dtype=bool)  # Boolean mask for all wavelengths
+        final_mask = np.zeros_like(
+            self.wavelengths, dtype=bool
+        )  # Boolean mask for all wavelengths
 
         for idx, spectral_flux in enumerate(full_spec_data):
             filtered_flux = np.zeros_like(spectral_flux)
             for i in range(len(mask_wave)):
-                mask_region = (self.wavelengths >= mask_left[i]) & (self.wavelengths <= mask_right[i])
-                filtered_flux[mask_region] = spectral_flux[mask_region]  # * mask_weight[i] Commented this factor to avoid a weighted flux.
-                final_mask |= mask_region 
+                mask_region = (self.wavelengths >= mask_left[i]) & (
+                    self.wavelengths <= mask_right[i]
+                )
+                filtered_flux[mask_region] = spectral_flux[
+                    mask_region
+                ]  # * mask_weight[i] Commented this factor to avoid a weighted flux.
+                final_mask |= mask_region
 
             filtered_flux_dataset[idx, :] = filtered_flux
         # Get the indexes of the filtered wavelengths
-        filtered_index = np.where(final_mask)[0]  
+        filtered_index = np.where(final_mask)[0]
 
         return filtered_flux_dataset, filtered_index
 
@@ -305,44 +321,57 @@ def interp_temp_given_flux(target_flux, master_flux, temp_values):
     temp_values = temp_values.flatten()
 
     interpolated_temp = np.zeros_like(target_flux)
-    accepted_idx = np.zeros_like(target_flux, dtype=bool) 
+    accepted_idx = np.zeros_like(target_flux, dtype=bool)
 
     monotonic_regions = []  # List of tuples (start_idx, end_idx) for monotonic chunks
     start_idx = 0
 
     for i in range(1, len(master_flux)):
         # Check if the sequence remains monotonic
-        if (master_flux[i] > master_flux[i - 1] and master_flux[start_idx] <= master_flux[start_idx + 1]) or \
-           (master_flux[i] < master_flux[i - 1] and master_flux[start_idx] >= master_flux[start_idx + 1]):
-            continue  
+        if (
+            master_flux[i] > master_flux[i - 1]
+            and master_flux[start_idx] <= master_flux[start_idx + 1]
+        ) or (
+            master_flux[i] < master_flux[i - 1]
+            and master_flux[start_idx] >= master_flux[start_idx + 1]
+        ):
+            continue
         else:
             # End of the current monotonic chunk
             if i - start_idx > 1:  # Only consider chunks with more than 1 point
                 monotonic_regions.append((start_idx, i - 1))
-            start_idx = i 
+            start_idx = i
 
     # Add the final chunk if it is monotonic
     if len(master_flux) - start_idx > 1:
-        if (master_flux[start_idx] <= master_flux[start_idx + 1]):  # Increasing
-            if all(master_flux[j] <= master_flux[j + 1] for j in range(start_idx, len(master_flux) - 1)):
+        if master_flux[start_idx] <= master_flux[start_idx + 1]:  # Increasing
+            if all(
+                master_flux[j] <= master_flux[j + 1]
+                for j in range(start_idx, len(master_flux) - 1)
+            ):
                 monotonic_regions.append((start_idx, len(master_flux) - 1))
-        elif (master_flux[start_idx] >= master_flux[start_idx + 1]):  # Decreasing
-            if all(master_flux[j] >= master_flux[j + 1] for j in range(start_idx, len(master_flux) - 1)):
+        elif master_flux[start_idx] >= master_flux[start_idx + 1]:  # Decreasing
+            if all(
+                master_flux[j] >= master_flux[j + 1]
+                for j in range(start_idx, len(master_flux) - 1)
+            ):
                 monotonic_regions.append((start_idx, len(master_flux) - 1))
 
     # Perform interpolation within monotonic regions
     cinterp = 0
     for start, end in monotonic_regions:
-        interp_fn = interp1d(master_flux[start:end + 1], temp_values[start:end + 1]) 
+        interp_fn = interp1d(master_flux[start : end + 1], temp_values[start : end + 1])
         for i in range(start, end + 1):
-            if master_flux[start] <= target_flux[i] <= master_flux[end] or (master_flux[start] >= target_flux[i] >= master_flux[end]):
+            if master_flux[start] <= target_flux[i] <= master_flux[end] or (
+                master_flux[start] >= target_flux[i] >= master_flux[end]
+            ):
                 interpolated_temp[i] = interp_fn(target_flux[i])
-                accepted_idx[i] = True 
+                accepted_idx[i] = True
                 cinterp += 1
             else:
                 # Exclude values outside the interpolation range
-                interpolated_temp[i] = temp_values[i]  
+                interpolated_temp[i] = temp_values[i]
                 accepted_idx[i] = False
-    
+
     interpolated_temp[~accepted_idx] = temp_values[~accepted_idx]
     return interpolated_temp, accepted_idx
