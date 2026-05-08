@@ -1,163 +1,115 @@
-# Doppler-shift Inference with Artificial Neural Networks (DopplerIANN)
+# DopplerIANN 
 
-> A modular framework for stellar spectroscopy analysis and deep learning using physical-based shell representation.
+This repository contains the reproducible code path used for the paper experiments based on:
 
----
+- `experiments/cnnShell_HO/`
+- `experiments/cnnShell_CV/` (CV5)
 
-## Overview
+The pipeline represented here is:
 
-**DopplerIANN** provides a complete pipeline for astrophysical signal modeling, including:
+`HARPS-N -> flux spectra -> temperature spectra -> planetary injections + CCF RV -> shell HDF5 -> HO/CV5 experiments`
 
-- **Physical modeling** — CCF computation, shell-based Doppler injection, and periodogram analysis.  
-- **Data handling** — scalable 3D preprocessing and HDF5 dataset utilities.  
-- **Neural architectures** — CNNs, VAEs, MLPs, and KANs.  
-- **Exploration utilities** — signal recovery, shell extraction, and uncertainty estimation.
-
-Developed by  
-**Isidro Gómez-Vargas (2025)**  
-_University of Geneva_
-
----
-
-## Installation
-
-### Clone the repository
+## 1) Environment
 
 ```bash
-git clone https://github.com/yourusername/DoppplerIANN.git
-cd DopplerIANN
+conda create --name doppleriann python=3.11
+conda activate doppleriann
+python -m pip install --upgrade pip setuptools
+pip install -e ".[all]"
 ```
 
-## Setting Up the Environment
+## 2) CCF Backend (Optional C++ Requirement)
 
-1. **Create a Conda Environment**
-
-   It is recommended to use `micromamba` or `conda`.  
-   Run the following command to create a new environment:
-
-   ```
-   conda create --name doppleriann python=3.11
-   ```
-
-2. **Activate the Environment**
-
-   ```
-   conda activate doppleriann
-   ```
-
-3. **Install the Module in Editable Mode**
-
-   Navigate to the root directory of DopplerIANN and run:
-
-   ```
-   python -m pip install --upgrade pip setuptools
-   pip install -e ".[all]"
-   ```
-
-   This installs DopplerIANN in editable mode, allowing code changes to be reflected immediately.
-
-
-## Data
-
-Data files can be downloaded or generated locally, depending on your setup.  
-Make sure paths inside your scripts point to the correct directories (for example: `data/`, `models/`, or `outputs/`).
-
----
-
-## C++ Radial Velocity Calculation
-
-DopplerIANN supports calculating radial velocities using a C++ implementation of the CCF.
-
-The CCF computation is automatically handled by the `CCFcalculator` class in Python.  
-The package dynamically selects between:
-- **Python wrapper mode** (`wrapper=True`) using the precompiled shared library `fit_CCF.so`.
-- **C++ executable mode** (`wrapper=False`) using the internal binary `BIS_FIT2`.
-
-### Option 1 — Use the Python Wrapper (by default)
-
-If a standard C compiler (e.g., GCC) is available, DopplerIANN will automatically attempt to build the **Python C wrapper** (`fit_CCF.c`).
-
-You can also build it manually:
+- CCF-derived observables are computed through `doppleriann/physics/CCFcalculator.py`.
+- Default mode is `wrapper=True`: on first use, the package tries to compile/load the Python C extension from `doppleriann/physics/ccf_resources/fit_CCF.c`.
+- Manual wrapper build (optional):
 
 ```bash
 cd doppleriann/physics/ccf_resources
-python setup_fit_CCF_PPP.py build
+python setup_fit_CCF_PPP.py build_ext --inplace
 ```
 
-This will produce `fit_CCF.cpython-xxx-x86_64-linux-gnu.so` in the same directory, which the module will load automatically.
+- If the wrapper cannot be compiled or loaded, the code falls back to C++ mode (`wrapper=False`) using `BIS_FIT2.cpp`.
+- C++ mode requires `g++` and GSL (`gsl-config`, version 2.6 or newer).
+- In practice, a full C++/GSL setup is optional unless you explicitly run with `wrapper=False` or wrapper compilation fails.
 
-### Option 2 — Fallback to C++ Mode
+## 3) Canonical Pipeline
 
-If the Python wrapper cannot be compiled or loaded, **DopplerIANN automatically falls back to the native C++ implementation**. In this case, you must have the **GNU Scientific Library (GSL, version 2.6 or later)** installed on your system. Installation instructions are available here: [https://www.linuxfromscratch.org/blfs/view/cvs/general/gsl.html](https://www.linuxfromscratch.org/blfs/view/cvs/general/gsl.html).
+### Step A. HARPS-N to flux arrays
 
-When `wrapper=False`, the code will use:
-- `BIS_FIT2.cpp` → compiled automatically into `BIS_FIT2`
-- `G2_mask.txt` → built-in line mask file
-- Internal handling for binary output (`ccf_parameter.bin`, etc.)
+- Script: `data_generators/load_harpsn_data.py`
+- Main outputs written to `data/`:
+  - `spectra_orig.npy`
+  - `spectra_active.npy`
+  - `time_df.csv`
 
-No manual setup is required — the C++ binary will compile and run on first use.  
-If compilation fails, the system logs a warning suggesting switching to the C++ fallback mode.
+### Step B. Flux to temperature + KITCAT filtering
 
----
+- Script: `data_generators/temp_and_kitcat_gen.py`
+- Uses `data/T1o2_spec.csv` and `data/mask_kitcat_NEW_kitcat_CCF_mask_Sun.npz`
+- Main outputs written to `data/`:
+  - `temp_or.npy`, `temp_act.npy`
+  - `spectra_kitcat_or.npy`, `spectra_kitcat_act.npy`
+  - `temp_kitcat_or.npy`, `temp_kitcat_act.npy`
+  - `waves_kitcat.txt`
 
-## Project Structure
+### Step C. Shell generation with injections and CCF-derived RV
 
-```
-doppleriann/        # Core Python package
-├── data/           # Data handling utilities
-├── physics/        # Physical modeling and signal processing
-│   └── ccf_resources/   # C++ source, mask, and compiled libraries
-├── networks/       # Neural network architectures
-├── utils/          # Logging and helpers
+- Script: `data_generators/test_shell_gen_fixed.py`
+- Launcher (SLURM array 0..9): `runShellGen.sh`
+- Outputs in `data/shells/<idx>/` as HDF5 files:
+  - `flux_PI*_P*_act.h5`
+  - `temp_PI*_P*_act.h5`
+  - `injection_phases.txt`
 
-└── data_generators/  # Generations of shell data given stellar spectra
-└── explorations/     # Research experiments and analysis scripts
-└── notebooks/        # Short notebooks scripts, case of use
-└── tests/            # Lightweight functional tests
+`generate_data` (in `doppleriann/data/shell_generation.py`) performs planetary injection, computes CCF-based observables, and writes shell datasets.
 
-```
+### Step D. HO/CV5 experiments
 
-## Quick Start
+- Hold-out scripts:
+  - `experiments/cnnShell_HO/cnnShellTemp.py`
+  - `experiments/cnnShell_HO/cnnShellFlux.py`
+  - `experiments/cnnShell_HO/cnnShellDetection.py`
 
-Once DopplerIANN is installed, you can quickly test a model build and training run:
+- CV5 scripts:
+  - Train: `experiments/cnnShell_CV/cv5fold_cnn.py`
+  - Predict: `experiments/cnnShell_CV/cv_cnn_predict.py`
+  - Detection: `experiments/cnnShell_CV/cv_cnn_detection.py`
+  - Chunk merge: `experiments/cnnShell_CV/join_chunks.py`
 
-```python
-import numpy as np
-from doppleriann.networks import ShellCNN1D
-from doppleriann.data import MaskedStandardScaler3D, load_shell_astro_datah5
+Optional SLURM launchers:
 
-# Load and scale data
-X, y = np.random.rand(100, 32, 64), np.random.rand(100, 2)
-scaler = MaskedStandardScaler3D().fit(X)
-X_scaled = scaler.transform(X)
+- `runCVcnn.sh`
+- `runCVpred.sh`
+- `runCVDet.sh`
+- `runCVchunk.sh`
 
-# Build and train a CNN
-model_arch = ShellCNN1D(input_shape=(32, 64), n_outputs=2)
-model = model_arch.model_tf()
-model.compile(optimizer="adam", loss="mse")
-model.fit(X_scaled, y, epochs=5, batch_size=8)
-```
+## 4) Files Required by the Pipeline (Do Not Delete)
 
----
+The following metadata files are required by the current scripts:
 
-## Testing
+- `data/time_df.csv`
+- `data/random_idx_train.npy`
+- `data/random_idx_test.npy`
+- `data/waves_kitcat.txt`
+- `data/wavelengths.txt`
+- `data/T1o2_spec.csv`
+- `data/mask_kitcat_NEW_kitcat_CCF_mask_Sun.npz`
 
-To verify that DopplerIANN installs and builds correctly:
+Model/reuse artifacts required for pretrained CV5 inference:
+
+- `experiments/cnnShell_CV/models/models/*.h5`
+- `experiments/cnnShell_CV/models/models/*.pkl`
+- `experiments/cnnShell_CV/outputs/*_fold*_test_idx.txt`
+
+## 5) Notes on Large Files
+
+- Shell datasets are stored as `.h5` under `data/shells/`.
+- Trained models are also `.h5` (plus `.pkl` scalers).
+- Keep `.h5`/`.pkl` files needed for reproduction; figure outputs are intentionally excluded.
+
+## 6) Tests
 
 ```bash
 pytest -v
 ```
-
-Run a single test (e.g., network build):
-
-```bash
-pytest tests/test_networks_build.py -v
-```
-
----
-
-## Citation
-
-If you use DopplerIANN in your research, please cite:
-
-I. Gómez-Vargas, X. Dumusque (2025). *DopplerIANN: Doppler-shift Inference with Artificial Neural Networks*
