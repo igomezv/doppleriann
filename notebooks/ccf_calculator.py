@@ -26,7 +26,7 @@ spectrum_noisy = spectrum + noise
 
 # Plot synthetic spectrum
 plt.figure(figsize=(8, 3))
-plt.plot(wavelength, spectrum_noisy, 'k', lw=1)
+plt.plot(wavelength, spectrum_noisy, "k", lw=1)
 plt.title("Mock Stellar Spectrum with a Gaussian Absorption Line")
 plt.xlabel("Wavelength (Å)")
 plt.ylabel("Normalized Flux")
@@ -36,21 +36,25 @@ plt.show()
 # Compute CCF with and without wrapper
 # ---
 
-print("Running CCF (Python-only mode)...")
+print("Running CCF (wrapper=False mode)...")
 ccf_py = CCFcalculator(wrapper=False, wavelimits=(wavelength.min(), wavelength.max()))
-ccf_data_py, ccf_err_py, *_ = ccf_py.ccf_calculator(spectrum_noisy, wavelength)
+result_py = ccf_py.ccf_calculator(spectrum_noisy, wavelength)
+ccf_data_py, ccf_err_py = result_py[0], result_py[1]
 
 print("Running CCF (C wrapper mode)...")
 ccf_cpp = CCFcalculator(wrapper=True, wavelimits=(wavelength.min(), wavelength.max()))
-ccf_data_cpp, ccf_err_cpp = ccf_cpp.ccf_calculator(spectrum_noisy, wavelength)
+result_cpp = ccf_cpp.ccf_calculator(spectrum_noisy, wavelength)
+ccf_data_cpp, ccf_err_cpp = result_cpp[0], result_cpp[1]
 
 # ---
 # Plot comparison
 # ---
 
 plt.figure(figsize=(8, 4))
-plt.plot(ccf_data_py[:, 0] / 1000, ccf_data_py[:, 1], 'b-', lw=2, label='Python (wrapper=False)')
-plt.plot(ccf_data_cpp[:, 0] / 1000, ccf_data_cpp[:, 1], 'r--', lw=1.5, label='C Wrapper (fit_CCF.so)')
+plt.plot(ccf_data_py[:, 0] / 1000, ccf_data_py[:, 1], "b-", lw=2, label="wrapper=False")
+plt.plot(
+    ccf_data_cpp[:, 0] / 1000, ccf_data_cpp[:, 1], "r--", lw=1.5, label="C Wrapper (fit_CCF.so)"
+)
 plt.xlabel("Velocity (km/s)")
 plt.ylabel("CCF")
 plt.title("CCF Comparison — Python vs. C Wrapper")
@@ -62,6 +66,8 @@ plt.show()
 # Inspect outputs
 # ---
 
-print(f"Python (no wrapper) → velocity range: {ccf_data_py[:, 0].min()/1000:.1f} to {ccf_data_py[:, 0].max()/1000:.1f} km/s")
-print(f"Mean CCF value (Python): {ccf_data_py[:, 1].mean():.4f}")
+print(
+    f"wrapper=False → velocity range: {ccf_data_py[:, 0].min() / 1000:.1f} to {ccf_data_py[:, 0].max() / 1000:.1f} km/s"
+)
+print(f"Mean CCF value (wrapper=False): {ccf_data_py[:, 1].mean():.4f}")
 print(f"Mean CCF value (C wrapper): {ccf_data_cpp[:, 1].mean():.4f}")
