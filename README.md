@@ -79,6 +79,7 @@ Detailed generator-script instructions are available in `data_generators/data_ge
   - For detection maps (several shell realizations are needed):
     - Detection: `experiments/cnnShell_CV/cv_cnn_detection.py` runs period chunks that can be launched in parallel.
     - Chunk merge: `experiments/cnnShell_CV/join_chunks.py` merges chunk outputs into final CV matrices.
+    - Detection-map results are not intended for a single shell realization.
 
 Optional SLURM launchers:
 
@@ -94,12 +95,12 @@ Optional SLURM launchers:
 - `notebooks/ccf_calculator.py`: quick comparison of CCF outputs with wrapper/C++ paths on a mock spectrum.
 - `notebooks/shells_plots.py`: visualization of shell snapshots (flux/temp, masked/unmasked, injected/not injected).
 - `notebooks/pure_ds.py`: shell-shape inspection for injected vs non-injected datasets.
-- `notebooks/detection_maps.py`: post-processing and plotting of HO/CV detection matrices.
+- `notebooks/detection_maps.py`: post-processing and plotting of HO/CV detection matrices (requires outputs aggregated from several realizations, not a single shell run).
 
 Run from repository root, for example:
 
 ```bash
-python notebooks/detection_maps.py
+python notebooks/shells_plots.py
 ```
 
 ## 4) Files Required by the Pipeline 
