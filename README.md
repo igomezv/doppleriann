@@ -35,6 +35,8 @@ python setup_fit_CCF_PPP.py build_ext --inplace
 
 ## 3) Canonical Pipeline
 
+Detailed generator-script instructions are available in `data_generators/data_generator_README.md`.
+
 ### Step A. HARPS-N to flux arrays
 
 - Script: `data_generators/load_harpsn_data.py`
@@ -67,15 +69,16 @@ python setup_fit_CCF_PPP.py build_ext --inplace
 ### Step D. HO/CV5 experiments
 
 - Hold-out scripts:
-  - `experiments/cnnShell_HO/cnnShellTemp.py`
-  - `experiments/cnnShell_HO/cnnShellFlux.py`
-  - `experiments/cnnShell_HO/cnnShellDetection.py`
+  - `experiments/cnnShell_HO/cnnShellTemp.py`: can load pretrained models or train from scratch for temperature shells.
+  - `experiments/cnnShell_HO/cnnShellFlux.py`: can load pretrained models or train from scratch for flux shells.
+  - `experiments/cnnShell_HO/cnnShellDetection.py`: builds HO detection maps and is intended for runs with several shell realizations (different random phases).
 
 - CV5 scripts:
-  - Train: `experiments/cnnShell_CV/cv5fold_cnn.py`
-  - Predict: `experiments/cnnShell_CV/cv_cnn_predict.py`
-  - Detection: `experiments/cnnShell_CV/cv_cnn_detection.py`
-  - Chunk merge: `experiments/cnnShell_CV/join_chunks.py`
+  - Train: `experiments/cnnShell_CV/cv5fold_cnn.py`.
+  - Predict: `experiments/cnnShell_CV/cv_cnn_predict.py` (supports pretrained models and can be tested on a single shell realization).
+  - For detection maps (several shell realizations are needed):
+    - Detection: `experiments/cnnShell_CV/cv_cnn_detection.py` runs period chunks that can be launched in parallel.
+    - Chunk merge: `experiments/cnnShell_CV/join_chunks.py` merges chunk outputs into final CV matrices.
 
 Optional SLURM launchers:
 
@@ -84,17 +87,35 @@ Optional SLURM launchers:
 - `runCVDet.sh`
 - `runCVchunk.sh`
 
-## 4) Files Required by the Pipeline (Do Not Delete)
+### Step E. Notebooks and analysis scripts
+
+`notebooks/` currently contains runnable Python analysis scripts (not `.ipynb` files):
+
+- `notebooks/ccf_calculator.py`: quick comparison of CCF outputs with wrapper/C++ paths on a mock spectrum.
+- `notebooks/shells_plots.py`: visualization of shell snapshots (flux/temp, masked/unmasked, injected/not injected).
+- `notebooks/pure_ds.py`: shell-shape inspection for injected vs non-injected datasets.
+- `notebooks/detection_maps.py`: post-processing and plotting of HO/CV detection matrices.
+
+Run from repository root, for example:
+
+```bash
+python notebooks/detection_maps.py
+```
+
+## 4) Files Required by the Pipeline 
 
 The following metadata files are required by the current scripts:
 
 - `data/time_df.csv`
-- `data/random_idx_train.npy`
-- `data/random_idx_test.npy`
-- `data/waves_kitcat.txt`
 - `data/wavelengths.txt`
 - `data/T1o2_spec.csv`
 - `data/mask_kitcat_NEW_kitcat_CCF_mask_Sun.npz`
+- `data/waves_kitcat.txt`
+
+To reproduce paper HO results (otherwise, you can build and save your own split):
+
+- `data/random_idx_train.npy`
+- `data/random_idx_test.npy`
 
 Model/reuse artifacts required for pretrained CV5 inference:
 
@@ -106,7 +127,7 @@ Model/reuse artifacts required for pretrained CV5 inference:
 
 - Shell datasets are stored as `.h5` under `data/shells/`.
 - Trained models are also `.h5` (plus `.pkl` scalers).
-- Keep `.h5`/`.pkl` files needed for reproduction; figure outputs are intentionally excluded.
+- Keep `.h5`/`.pkl` files needed for reproduction.
 
 ## 6) Tests
 
