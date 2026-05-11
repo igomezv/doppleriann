@@ -44,9 +44,9 @@ logger.info("Starting controlled shell generation (idx_data = %s)", idx_data)
 # Base input directory
 # -----------------------------------------------
 if device_hpc:
-    large_data_dir = os.path.join(os.getenv("HOME"), "data")
+    large_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "large_data"))
 else:
-    large_data_dir = "/media/isidro/data/data/harpn"
+    large_data_dir = "/media/isidro/data/large_data/harpn"
 
 dates = None
 waves_obs = None

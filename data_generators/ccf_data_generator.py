@@ -10,7 +10,11 @@ from doppleriann.physics import astro_data
 from doppleriann.utils.logger_config import logger
 
 hpc_device = True
-large_data_dir = os.getenv('HOME')+'/data/' if hpc_device else '/media/isidro/data/data/harpn/'
+large_data_dir = (
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'large_data'))
+    if hpc_device
+    else '/media/isidro/data/large_data/harpn/'
+)
 # Load data
 print("loading data")
 data_dir = 'data/'
@@ -35,4 +39,3 @@ astro_orig_df = pd.DataFrame(astro_data_orig, columns=["rv", "rv_err", "fwhm", "
 astro_orig_csv_file = os.path.join(data_dir, "astro_data_orig.csv")
 astro_orig_df.to_csv(astro_orig_csv_file, index=False)
 logger.info(f"CCF data from spectra without activity saved to: {astro_orig_csv_file}, {np.shape(astro_data_orig)}")
-

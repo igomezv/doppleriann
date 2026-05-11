@@ -51,9 +51,10 @@ Detailed generator-script instructions are available in `data_generators/data_ge
 - Uses `data/T1o2_spec.csv` and `data/mask_kitcat_NEW_kitcat_CCF_mask_Sun.npz`
 - Main outputs written to `data/`:
   - `temp_or.npy`, `temp_act.npy`
+  - `waves_kitcat.txt`
+- Main outputs written to `large_data/`:
   - `spectra_kitcat_or.npy`, `spectra_kitcat_act.npy`
   - `temp_kitcat_or.npy`, `temp_kitcat_act.npy`
-  - `waves_kitcat.txt`
 
 ### Step C. Shell generation with injections and CCF-derived RV
 
@@ -63,6 +64,11 @@ Detailed generator-script instructions are available in `data_generators/data_ge
   - `flux_PI*_P*_act.h5`
   - `temp_PI*_P*_act.h5`
   - `injection_phases.txt`
+- Uses `large_data/` for the filtered spectra and error arrays:
+  - `spectra_kitcat_or_err.npy`
+  - `temp_kitcat_or_err.npy`
+  - `spectra_kitcat_act.npy`
+  - `temp_kitcat_act.npy`
 
 `generate_data` (in `doppleriann/data/shell_generation.py`) performs planetary injection, computes CCF-based observables, and writes shell datasets.
 
@@ -127,6 +133,7 @@ Model/reuse artifacts required for pretrained CV5 inference:
 ## 5) Notes on Large Files
 
 - Shell datasets are stored as `.h5` under `data/shells/`.
+- Large `.npy` artifacts are stored under `large_data/` and managed with Git LFS.
 - Trained models are also `.h5` (plus `.pkl` scalers).
 - Keep `.h5`/`.pkl` files needed for reproduction.
 

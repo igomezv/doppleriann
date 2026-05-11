@@ -15,7 +15,12 @@ from doppleriann.data import load_hdf5_data  # optional helper, for consistency
 
 
 device_hpc = True
-large_data_dir = os.path.join(os.getenv('HOME'), 'data/') if device_hpc else '/media/isidro/data/data/harpn/'
+large_data_dir = (
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'large_data'))
+    if device_hpc
+    else '/media/isidro/data/large_data/harpn/'
+)
+os.makedirs(large_data_dir, exist_ok=True)
 # from Khaled's temperature calculations
 # We use the same mask for flux and temperature shells to have a fair comparison
 maskfile = 'data/mask_kitcat_NEW_kitcat_CCF_mask_Sun.npz'
@@ -38,7 +43,7 @@ spec_types = ['act', 'or']
 def load_spectra(spec_type_str):
         if spec_type_str == 'sim':
             # Simulated spectra, removing outliers
-            spectra_full = np.load(large_data_dir + 'sims_and_real.npy')
+            spectra_full = np.load(os.path.join(large_data_dir, 'sims_and_real.npy'))
             spectra_values = spectra_full[3612:, :]
             outliers_idx = [idx for idx in [246, 249, 1196, 1453, 2176]]
             spectra_values = np.delete(spectra_values, outliers_idx, axis=0)
@@ -82,6 +87,6 @@ for spec_type in spec_types:
     spec = SpectrumData(wavelengths=waves_obs)
     _, filtered_index = spec.kitcat_filtering_mask(spectra_data, mask_dir=maskfile)
     np.savetxt('data/waves_kitcat.txt', waves_obs[filtered_index])
-    np.save(f'data/spectra_kitcat_{spec_type}.npy', spectra_data[:, filtered_index])
-    np.save(f'data/temp_kitcat_{spec_type}.npy', temp_val[:, filtered_index])
+    np.save(os.path.join(large_data_dir, f'spectra_kitcat_{spec_type}.npy'), spectra_data[:, filtered_index])
+    np.save(os.path.join(large_data_dir, f'temp_kitcat_{spec_type}.npy'), temp_val[:, filtered_index])
     logger.info(f"Saving filtered spectra and temperature for {spec_type} spectra")

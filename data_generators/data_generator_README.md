@@ -57,9 +57,11 @@ Main required inputs:
 
 Outputs written to `data/`:
 - `temp_or.npy`, `temp_act.npy`
+- `waves_kitcat.txt`
+
+Outputs written to `large_data/`:
 - `spectra_kitcat_or.npy`, `spectra_kitcat_act.npy`
 - `temp_kitcat_or.npy`, `temp_kitcat_act.npy`
-- `waves_kitcat.txt`
 
 Run:
 
@@ -68,7 +70,7 @@ python data_generators/temp_and_kitcat_gen.py
 ```
 
 Notes:
-- The script has a `device_hpc` flag and defines `large_data_dir`; verify these paths for your setup.
+- The filtered KITCAT arrays are written to `large_data/`.
 
 ## 3) `ccf_data_generator.py` (optional)
 
@@ -103,7 +105,7 @@ Purpose:
 Main required inputs:
 - `data/time_df.csv` (expects `date` column)
 - `data/waves_kitcat.txt`
-- From `large_data_dir` (`$HOME/data` when `device_hpc=True`):
+- From `large_data/`:
   - `spectra_kitcat_or_err.npy`
   - `temp_kitcat_or_err.npy`
   - `spectra_kitcat_act.npy`
