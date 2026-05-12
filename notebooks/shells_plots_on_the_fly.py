@@ -1,5 +1,6 @@
 import sys
 import os
+import pickle
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -17,10 +18,7 @@ from doppleriann.utils.logger_config import logger
 # ============================================================
 logger.info("Loading data...")
 
-device_hpc = False
-large_data_dir = (
-    os.path.join(os.getenv("HOME"), "data/") if device_hpc else "/media/isidro/data/data/harpn/"
-)
+large_data_dir = "large_data"
 
 n_reso = 9
 doppler_shift = 20.0  # m/s
@@ -51,15 +49,15 @@ temp_master_spec = np.load(temp_master_file)  # (31066,)
 # LOAD FULL ERRORS (2D) AND COLLAPSE THEM TO MASTER ERR
 # ----------------------------------------------------------------------
 temp_err_val_file = f"{large_data_dir}/temp_kitcat_or_err.npy"
-flux_err_val_file = f"{large_data_dir}/spectra_kitcat_or_err.npy"
+flux_err_val_file = f"{large_data_dir}/spectra_kitcat_act_err.npy"
 
 try:
-    flux_err_data = np.load(flux_err_val_file)  # (2036, 31066)
-    temp_err_data = np.load(temp_err_val_file)  # (2036, 31066)
+    flux_err_data = np.load(flux_err_val_file, allow_pickle=True)  # (2036, 31066)
+    temp_err_data = np.load(temp_err_val_file, allow_pickle=True)  # (2036, 31066)
     logger.info("Loaded error arrays from disk.")
-except FileNotFoundError:
+except (FileNotFoundError, ValueError, pickle.UnpicklingError, OSError):
     logger.warning(
-        "Error files not found on external drive. Using constant fallback spec_err = 1e-3."
+        "Error files are missing or unreadable in large_data/. Using constant fallback spec_err = 1e-3."
     )
     n_wave = len(wavelengths)
     flux_err_data = None  # will be set after flux_spec_data is loaded
@@ -78,9 +76,9 @@ try:
     flux_spec_data = np.load(full_flux_file)  # (2036, 31066)
     temp_spec_data = np.load(full_temp_file)  # (2036, 31066)
     logger.info("Loaded full spectral time series from disk.")
-except FileNotFoundError:
+except (FileNotFoundError, ValueError, pickle.UnpicklingError, OSError):
     logger.warning(
-        "Full spectra not found on external drive. Using master + small noise as fallback."
+        "Full spectra are missing or unreadable in large_data/. Using master + small noise as fallback."
     )
     rng = np.random.default_rng(42)
     n_mock, n_wave = 10, len(wavelengths)

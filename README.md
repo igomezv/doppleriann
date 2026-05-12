@@ -1,12 +1,10 @@
 # Doppler-shift Inference with Artificial Neural Networks (DopplerIANN)
 
-> A modular framework for stellar spectroscopy analysis and deep learning using physical-based shell representation.
-
 ---
 
 ## Overview
 
-**DopplerIANN** provides a complete pipeline for astrophysical signal modeling, including:
+**DopplerIANN** provides:
 
 - **Physical modeling** — CCF computation, shell-based Doppler injection, and periodogram analysis.  
 - **Data handling** — scalable 3D preprocessing and HDF5 dataset utilities.  
@@ -121,12 +119,20 @@ Optional SLURM launchers:
 `notebooks/` currently contains runnable Python analysis scripts (not `.ipynb` files):
 
 - `notebooks/ccf_calculator.py`: quick comparison of CCF outputs with wrapper/C++ paths on a mock spectrum.
+- `notebooks/shells_plots_on_the_fly.py` generates shell representations on the fly for illustration by loading the master spectra from `data/` and the full spectra/error arrays from `large_data/` (`spectra_kitcat_act.npy`, `temp_kitcat_act.npy`, `spectra_kitcat_act_err.npy`, `temp_kitcat_or_err.npy`).
 
 Run from repository root, for example:
 
 ```bash
 python notebooks/ccf_calculator.py
 ```
+or 
+
+```bash
+python notebooks/shells_plots_on_the_fly.py
+```
+
+
 
 ## Files Required by the Pipeline 
 
@@ -153,7 +159,11 @@ Model/reuse artifacts required for pretrained CV5 inference:
 
 - Shell datasets are stored as `.h5` under `data/shells/`.
 - Large `.npy` artifacts are stored under `large_data/` and managed with Git LFS.
+- If `large_data/` was cloned as Git LFS pointer files, run the following to fetch the actual `.npy` artifacts:
+
+  ```bash
+  git lfs track "large_data/*.npy"
+  git lfs pull
+  ```
 - Trained models are also `.h5` (plus `.pkl` scalers).
 - Keep `.h5`/`.pkl` files needed for reproduction.
-
-
