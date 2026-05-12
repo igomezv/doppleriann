@@ -107,12 +107,6 @@ Detailed generator-script instructions are available in `data_generators/data_ge
     - Chunk merge: `experiments/cnnShell_CV/join_chunks.py` merges chunk outputs into final CV matrices.
     - Detection-map results are not intended for a single shell realization.
 
-Optional SLURM launchers:
-
-- `runCVcnn.sh`
-- `runCVpred.sh`
-- `runCVDet.sh`
-- `runCVchunk.sh`
 
 ### Step E. Notebooks and analysis scripts
 
