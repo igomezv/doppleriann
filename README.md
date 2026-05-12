@@ -1,15 +1,20 @@
-# DopplerIANN 
+# Doppler-shift Inference with Artificial Neural Networks (DopplerIANN)
 
-This repository contains the reproducible code path used for the paper experiments based on:
+> A modular framework for stellar spectroscopy analysis and deep learning using physical-based shell representation.
 
-- `experiments/cnnShell_HO/`
-- `experiments/cnnShell_CV/` (CV5)
+---
 
-The pipeline represented here is:
+## Overview
 
-`HARPS-N -> flux spectra -> temperature spectra -> planetary injections + CCF RV -> shell HDF5 -> HO/CV5 experiments`
+**DopplerIANN** provides a complete pipeline for astrophysical signal modeling, including:
 
-## 1) Environment
+- **Physical modeling** — CCF computation, shell-based Doppler injection, and periodogram analysis.  
+- **Data handling** — scalable 3D preprocessing and HDF5 dataset utilities.  
+- **Neural architectures** — CNNs, VAEs, MLPs, and KANs.  
+- **Exploration utilities** — signal recovery, shell extraction, and uncertainty estimation.
+
+
+## Installation
 
 ```bash
 conda create --name doppleriann python=3.11
@@ -18,7 +23,7 @@ python -m pip install --upgrade pip setuptools
 pip install -e ".[all]"
 ```
 
-## 2) CCF Backend (Optional C++ Requirement)
+## CCF Backend (Optional C++ Requirement)
 
 - CCF-derived observables are computed through `doppleriann/physics/CCFcalculator.py`.
 - Default mode is `wrapper=True`: on first use, the package tries to compile/load the Python C extension from `doppleriann/physics/ccf_resources/fit_CCF.c`.
@@ -33,7 +38,20 @@ python setup_fit_CCF_PPP.py build_ext --inplace
 - C++ mode requires `g++` and GSL (`gsl-config`, version 2.6 or newer).
 - In practice, a full C++/GSL setup is optional unless you explicitly run with `wrapper=False` or wrapper compilation fails.
 
-## 3) Canonical Pipeline
+
+-----
+
+This repository contains the reproducible code path used for the paper experiments based on:
+
+- `experiments/cnnShell_HO/`
+- `experiments/cnnShell_CV/` (CV5)
+
+The pipeline represented here is:
+
+`HARPS-N -> flux spectra -> temperature spectra -> planetary injections + CCF RV -> shell HDF5 -> HO/CV5 experiments`
+
+
+## Canonical Pipeline
 
 Detailed generator-script instructions are available in `data_generators/data_generator_README.md`.
 
@@ -56,10 +74,12 @@ Detailed generator-script instructions are available in `data_generators/data_ge
   - `spectra_kitcat_or.npy`, `spectra_kitcat_act.npy`
   - `temp_kitcat_or.npy`, `temp_kitcat_act.npy`
 
+- If these files are already present in `large_data/`, you can skip Step B and proceed directly to Step C for shell generation.
+
 ### Step C. Shell generation with injections and CCF-derived RV
 
 - Script: `data_generators/test_shell_gen_fixed.py`
-- Launcher (SLURM array 0..9): `runShellGen.sh`
+
 - Outputs in `data/shells/<idx>/` as HDF5 files:
   - `flux_PI*_P*_act.h5`
   - `temp_PI*_P*_act.h5`
@@ -69,6 +89,8 @@ Detailed generator-script instructions are available in `data_generators/data_ge
   - `temp_kitcat_or_err.npy`
   - `spectra_kitcat_act.npy`
   - `temp_kitcat_act.npy`
+
+- If the Step B `large_data/` outputs already exist, you can run Step C directly without regenerating them.
 
 `generate_data` (in `doppleriann/data/shell_generation.py`) performs planetary injection, computes CCF-based observables, and writes shell datasets.
 
@@ -99,17 +121,14 @@ Optional SLURM launchers:
 `notebooks/` currently contains runnable Python analysis scripts (not `.ipynb` files):
 
 - `notebooks/ccf_calculator.py`: quick comparison of CCF outputs with wrapper/C++ paths on a mock spectrum.
-- `notebooks/shells_plots.py`: visualization of shell snapshots (flux/temp, masked/unmasked, injected/not injected).
-- `notebooks/pure_ds.py`: shell-shape inspection for injected vs non-injected datasets.
-- `notebooks/detection_maps.py`: post-processing and plotting of HO/CV detection matrices (requires outputs aggregated from several realizations, not a single shell run).
 
 Run from repository root, for example:
 
 ```bash
-python notebooks/shells_plots.py
+python notebooks/ccf_calculator.py
 ```
 
-## 4) Files Required by the Pipeline 
+## Files Required by the Pipeline 
 
 The following metadata files are required by the current scripts:
 
@@ -130,15 +149,11 @@ Model/reuse artifacts required for pretrained CV5 inference:
 - `experiments/cnnShell_CV/models/models/*.pkl`
 - `experiments/cnnShell_CV/outputs/*_fold*_test_idx.txt`
 
-## 5) Notes on Large Files
+## Notes on Large Files
 
 - Shell datasets are stored as `.h5` under `data/shells/`.
 - Large `.npy` artifacts are stored under `large_data/` and managed with Git LFS.
 - Trained models are also `.h5` (plus `.pkl` scalers).
 - Keep `.h5`/`.pkl` files needed for reproduction.
 
-## 6) Tests
 
-```bash
-pytest -v
-```
