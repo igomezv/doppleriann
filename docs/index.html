@@ -6,19 +6,20 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>doppleriann documentation &mdash; doppleriann 0.5.0 documentation</title>
+  <title>doppleriann documentation &mdash; doppleriann 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=1dd76d02"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,11 +41,18 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">doppleriann documentation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -71,17 +79,60 @@
              
   <section id="doppleriann-documentation">
 <h1>doppleriann documentation<a class="headerlink" href="#doppleriann-documentation" title="Link to this heading"></a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
+<p>Welcome to the DopplerIANN documentation.</p>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#main-components">Main components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-the-package">Install the package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-docs-dependencies">Install docs dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#optional-ccf-backend">Optional CCF backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#canonical-pipeline">Canonical pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#experiment-scripts">Experiment scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#notebooks-and-analysis-scripts">Notebooks and analysis scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_generators.html#recommended-order">Recommended order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generators.html#load-harpsn-data-py"><code class="docutils literal notranslate"><span class="pre">load_harpsn_data.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generators.html#temp-and-kitcat-gen-py"><code class="docutils literal notranslate"><span class="pre">temp_and_kitcat_gen.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generators.html#ccf-data-generator-py"><code class="docutils literal notranslate"><span class="pre">ccf_data_generator.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_generators.html#test-shell-gen-fixed-py"><code class="docutils literal notranslate"><span class="pre">test_shell_gen_fixed.py</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shell_data.html#storage-size">Storage size</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#typical-workflow">Typical workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#package-modules">Package modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
 </div>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
