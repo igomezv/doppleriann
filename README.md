@@ -98,6 +98,7 @@ Detailed generator-script instructions are available in `data_generators/data_ge
   - `experiments/cnnShell_HO/cnnShellTemp.py`: can load pretrained models or train from scratch for temperature shells.
   - `experiments/cnnShell_HO/cnnShellFlux.py`: can load pretrained models or train from scratch for flux shells.
   - `experiments/cnnShell_HO/cnnShellDetection.py`: builds HO detection maps and is intended for runs with several shell realizations (different random phases).
+  - `experiments/cnnShell_hyperparameter_opt/cnnShellOptuna.py`: Optuna-based hyperparameter optimization for the CNN shell models.
 
 - CV5 scripts:
   - Train: `experiments/cnnShell_CV/cv5fold_cnn.py`.
