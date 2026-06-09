@@ -1,0 +1,1903 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; doppleriann 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="References" href="references.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            doppleriann
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#package-modules">Package modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.data.data_loader">Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5_random"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5_random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_hdf5_data"><code class="docutils literal notranslate"><span class="pre">load_hdf5_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_and_process_file"><code class="docutils literal notranslate"><span class="pre">load_and_process_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.shell_generation.generate_hidden_signals"><code class="docutils literal notranslate"><span class="pre">generate_hidden_signals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.shell_generation.generate_data"><code class="docutils literal notranslate"><span class="pre">generate_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.networks.base_networks">Networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-base-classes">DopplerIANN Networks Module - Base Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE"><code class="docutils literal notranslate"><span class="pre">SuperVAE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET"><code class="docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-custom-tensorflow-layers">DopplerIANN Networks Module - Custom TensorFlow Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.MCDropout"><code class="docutils literal notranslate"><span class="pre">MCDropout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.KLDivergenceLayer"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLayer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer"><code class="docutils literal notranslate"><span class="pre">ReconstructionLossLayer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer"><code class="docutils literal notranslate"><span class="pre">Resize1DTensorLayer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.L1LatentRegularization"><code class="docutils literal notranslate"><span class="pre">L1LatentRegularization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.resize_1d_tensor"><code class="docutils literal notranslate"><span class="pre">resize_1d_tensor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.sampling"><code class="docutils literal notranslate"><span class="pre">sampling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-autoencoders">DopplerIANN Networks Module - Autoencoders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.aes.VaeCNN1D"><code class="docutils literal notranslate"><span class="pre">VaeCNN1D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.aes.AeCNN1D"><code class="docutils literal notranslate"><span class="pre">AeCNN1D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-cnn-architectures">DopplerIANN Networks Module - CNN Architectures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1D"><code class="docutils literal notranslate"><span class="pre">ShellCNN1D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1DDual"><code class="docutils literal notranslate"><span class="pre">ShellCNN1DDual</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2Channel"><code class="docutils literal notranslate"><span class="pre">ShellCNN2Channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2D"><code class="docutils literal notranslate"><span class="pre">ShellCNN2D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-conditional-vaes">DopplerIANN Networks Module - Conditional VAEs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cvae.CondVaeCNN1D"><code class="docutils literal notranslate"><span class="pre">CondVaeCNN1D</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-kolmogorov-arnold-networks-kan">DopplerIANN Networks Module - Kolmogorov-Arnold Networks (KAN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.kann.KAN"><code class="docutils literal notranslate"><span class="pre">KAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-multilayer-perceptron-mlp">DopplerIANN Networks Module - Multilayer Perceptron (MLP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.mlp.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.physics.CCFcalculator">Physics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator"><code class="docutils literal notranslate"><span class="pre">CCFcalculator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.CCFcalculator.astro_data"><code class="docutils literal notranslate"><span class="pre">astro_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.inject_planet_at_shell_level"><code class="docutils literal notranslate"><span class="pre">inject_planet_at_shell_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.remove_planet_signal_shell_level"><code class="docutils literal notranslate"><span class="pre">remove_planet_signal_shell_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.extract_shape_shell"><code class="docutils literal notranslate"><span class="pre">extract_shape_shell()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData"><code class="docutils literal notranslate"><span class="pre">SpectrumData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.spec_transform.interp_temp_given_flux"><code class="docutils literal notranslate"><span class="pre">interp_temp_given_flux()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann-physics-signal-utilities">DopplerIANN Physics — Signal Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.sinusoidal_model"><code class="docutils literal notranslate"><span class="pre">sinusoidal_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.long_term_remover"><code class="docutils literal notranslate"><span class="pre">long_term_remover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.remove_strongest_signals"><code class="docutils literal notranslate"><span class="pre">remove_strongest_signals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.recover_phase_offset"><code class="docutils literal notranslate"><span class="pre">recover_phase_offset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.circ_dist_cycles"><code class="docutils literal notranslate"><span class="pre">circ_dist_cycles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.periodogram"><code class="docutils literal notranslate"><span class="pre">periodogram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.generate_periodogram_test"><code class="docutils literal notranslate"><span class="pre">generate_periodogram_test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.prior_transform"><code class="docutils literal notranslate"><span class="pre">prior_transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.utils.logger_config">Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#doppleriann.utils.logger_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">doppleriann</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<section id="package-modules">
+<h2>Package modules<a class="headerlink" href="#package-modules" title="Link to this heading"></a></h2>
+<section id="module-doppleriann.data.data_loader">
+<span id="data"></span><h3>Data<a class="headerlink" href="#module-doppleriann.data.data_loader" title="Link to this heading"></a></h3>
+<hr class="docutils" />
+<p>Methods to load and preprocess shell and astrophysical data
+from HDF5 files used in Doppleriann. Supports merging datasets,
+handling planetary signal injections, and generating shell-level inputs.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.data.data_loader.load_shell_astro_datah5">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.data_loader.</span></span><span class="sig-name descname"><span class="pre">load_shell_astro_datah5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.1,</span> <span class="pre">1.0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[20]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'act'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_residuals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data/shells/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.data_loader.load_shell_astro_datah5" title="Link to this definition"></a></dt>
+<dd><p>Load and merge multiple HDF5 shell datasets into full training arrays.</p>
+<p>Each file corresponds to a specific planetary injection setup, defined
+by a Doppler semi-amplitude (PI) and orbital period (P).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pis</strong> (<em>list</em><em> of </em><em>float</em>) – List of Doppler semi-amplitude values (m/s) to include. Examples: [0.1, 1.0].</p></li>
+<li><p><strong>periods</strong> (<em>list</em><em> of </em><em>float</em>) – List of orbital periods (days) for which data is loaded.</p></li>
+<li><p><strong>use_mask</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to multiply shell data by the density matrix (default False).</p></li>
+<li><p><strong>spec_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Spectrum type identifier (act, or, sim) (default “act”).</p></li>
+<li><p><strong>use_residuals</strong> (<em>bool</em><em>, </em><em>optional</em>) – Subtract mean shell value to compute residuals (default False).</p></li>
+<li><p><strong>use_temp</strong> (<em>bool</em><em>, </em><em>optional</em>) – Use temperature shells (True) or flux shells (False) (default True).</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing the HDF5 files (default “data/shells/”).</p></li>
+<li><p><strong>dataset_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Direct filename to load instead of looping through PI/period (default “default”).</p></li>
+<li><p><strong>selected_idx</strong> (<em>list</em><em> or </em><em>ndarray</em><em>, </em><em>optional</em>) – Specific indexes of spectra to select (default None).</p></li>
+<li><p><strong>remove_ds</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to remove the Doppler-shift component using a reference dataset (default False).</p></li>
+<li><p><strong>remove_ds_val</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference Doppler amplitude (m/s) for removal (default 5.0).</p></li>
+<li><p><strong>remove_ds_period</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference period (days) for removal dataset (default 100).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>shell_data_full</strong> (<em>ndarray</em>) – Combined shell data array (N, H, W).</p></li>
+<li><p><strong>astro_data_full</strong> (<em>ndarray</em>) – Corresponding astrophysical quantities.</p></li>
+<li><p><strong>density_data_full</strong> (<em>ndarray</em>) – Density maps for each shell.</p></li>
+<li><p><strong>grad_data_full</strong> (<em>ndarray</em>) – Gradient maps for each shell.</p></li>
+<li><p><strong>wave_data_full</strong> (<em>ndarray</em>) – Wavelength maps for each shell.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.data.data_loader.load_shell_astro_datah5_random">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.data_loader.</span></span><span class="sig-name descname"><span class="pre">load_shell_astro_datah5_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'act'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_residuals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data/shellsHiddenRandom/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_ds_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_ds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.data_loader.load_shell_astro_datah5_random" title="Link to this definition"></a></dt>
+<dd><p>Load a random subset of HDF5 shell datasets for stochastic training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_mask</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to multiply shell data by the density matrix (default False).</p></li>
+<li><p><strong>spec_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Spectrum type identifier (act, or, sim) (default “act”).</p></li>
+<li><p><strong>use_residuals</strong> (<em>bool</em><em>, </em><em>optional</em>) – Subtract mean shell value to compute residuals (default False).</p></li>
+<li><p><strong>use_temp</strong> (<em>bool</em><em>, </em><em>optional</em>) – Use temperature shells (True) or flux shells (False) (default True).</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Directory containing the HDF5 files (default “data/shellsHiddenRandom/”).</p></li>
+<li><p><strong>selected_idx</strong> (<em>list</em><em> or </em><em>ndarray</em><em>, </em><em>optional</em>) – Specific indexes of spectra to select (default None).</p></li>
+<li><p><strong>remove_ds</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to remove the Doppler-shift component using a reference dataset (default False).</p></li>
+<li><p><strong>remove_ds_val</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference Doppler amplitude (m/s) for removal (default 5.0).</p></li>
+<li><p><strong>remove_ds_period</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference period (days) for removal dataset (default 100).</p></li>
+<li><p><strong>min_ds</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum Doppler shift (m/s) for inclusion (default 0.0).</p></li>
+<li><p><strong>max_ds</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum Doppler shift (m/s) for inclusion (default np.inf).</p></li>
+<li><p><strong>n_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of random files to load (default None).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>shell_data_full</strong> (<em>ndarray</em>) – Combined shell data array (N, H, W).</p></li>
+<li><p><strong>astro_data_full</strong> (<em>ndarray</em>) – Corresponding astrophysical quantities.</p></li>
+<li><p><strong>density_data_full</strong> (<em>ndarray</em>) – Density maps for each shell.</p></li>
+<li><p><strong>grad_data_full</strong> (<em>ndarray</em>) – Gradient maps for each shell.</p></li>
+<li><p><strong>wave_data_full</strong> (<em>ndarray</em>) – Wavelength maps for each shell.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.data.data_loader.load_hdf5_data">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.data_loader.</span></span><span class="sig-name descname"><span class="pre">load_hdf5_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.data_loader.load_hdf5_data" title="Link to this definition"></a></dt>
+<dd><p>Load a specific dataset from an HDF5 file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.data.data_loader.load_and_process_file">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.data_loader.</span></span><span class="sig-name descname"><span class="pre">load_and_process_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_residuals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.data_loader.load_and_process_file" title="Link to this definition"></a></dt>
+<dd><p>Load shell and astrophysical datasets from an HDF5 file.</p>
+<p>Compatible with both legacy (Pandas .to_hdf) and modern (h5py) DopplerIANN formats.</p>
+</dd></dl>
+
+<hr class="docutils" id="module-doppleriann.data.scalers" />
+<p>Scaling utilities for DopplerIANN shell data.</p>
+<p>Includes Min-Max, Standard, and Masked Standard scalers for
+3D datasets (e.g., spectral shells or image-like data cubes).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MinMaxScaler3D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.data.scalers.</span></span><span class="sig-name descname"><span class="pre">MinMaxScaler3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MinMaxScaler3D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Scales each pixel independently across all shells using min-max normalization.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MinMaxScaler3D.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MinMaxScaler3D.fit" title="Link to this definition"></a></dt>
+<dd><p>Compute min and max per pixel position across all shells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Fitted scaler instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D" title="doppleriann.data.scalers.MinMaxScaler3D">MinMaxScaler3D</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MinMaxScaler3D.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MinMaxScaler3D.transform" title="Link to this definition"></a></dt>
+<dd><p>Scale each pixel independently using stored min and max values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array to scale.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_scaled</strong> – Scaled data array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MinMaxScaler3D.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MinMaxScaler3D.fit_transform" title="Link to this definition"></a></dt>
+<dd><p>Fit and transform the input data in one step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MinMaxScaler3D.inverse_transform">
+<span class="sig-name descname"><span class="pre">inverse_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_scaled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MinMaxScaler3D.inverse_transform" title="Link to this definition"></a></dt>
+<dd><p>Reverse the scaling transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_scaled</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Scaled data array to revert.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_orig</strong> – Original (unscaled) data array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.StandardScaler3D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.data.scalers.</span></span><span class="sig-name descname"><span class="pre">StandardScaler3D</span></span><a class="headerlink" href="#doppleriann.data.scalers.StandardScaler3D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Standardizes 3D data by removing the mean and scaling to unit variance.
+Useful for shell datasets and other image-like structures.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.StandardScaler3D.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.StandardScaler3D.fit" title="Link to this definition"></a></dt>
+<dd><p>Compute the mean and standard deviation across all samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Fitted scaler instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D" title="doppleriann.data.scalers.StandardScaler3D">StandardScaler3D</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.StandardScaler3D.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.StandardScaler3D.transform" title="Link to this definition"></a></dt>
+<dd><p>Apply standardization to the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_scaled</strong> – Standardized data array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.StandardScaler3D.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.StandardScaler3D.fit_transform" title="Link to this definition"></a></dt>
+<dd><p>Fit and transform the input data in one step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.StandardScaler3D.inverse_transform">
+<span class="sig-name descname"><span class="pre">inverse_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_scaled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.StandardScaler3D.inverse_transform" title="Link to this definition"></a></dt>
+<dd><p>Reverse the standardization process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_scaled</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Standardized data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_orig</strong> – Original data array restored from standardized form.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MaskedStandardScaler3D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.data.scalers.</span></span><span class="sig-name descname"><span class="pre">MaskedStandardScaler3D</span></span><a class="headerlink" href="#doppleriann.data.scalers.MaskedStandardScaler3D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Standardizes 3D arrays while preserving zeros (masked normalization).
+Zeros are treated as missing data and excluded from mean/std computation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MaskedStandardScaler3D.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MaskedStandardScaler3D.fit" title="Link to this definition"></a></dt>
+<dd><p>Compute mean and standard deviation while ignoring zero values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array with possible zero-masked elements.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Fitted scaler instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D" title="doppleriann.data.scalers.MaskedStandardScaler3D">MaskedStandardScaler3D</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MaskedStandardScaler3D.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MaskedStandardScaler3D.transform" title="Link to this definition"></a></dt>
+<dd><p>Apply standardization while preserving zero-masked elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array with zeros representing masked elements.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_norm</strong> – Standardized data array with zeros preserved.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MaskedStandardScaler3D.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MaskedStandardScaler3D.fit_transform" title="Link to this definition"></a></dt>
+<dd><p>Fit the scaler and apply the transformation in one step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Input data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_norm</strong> – Standardized data array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.data.scalers.MaskedStandardScaler3D.inverse_transform">
+<span class="sig-name descname"><span class="pre">inverse_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_scaled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.scalers.MaskedStandardScaler3D.inverse_transform" title="Link to this definition"></a></dt>
+<dd><p>Reverse the standardization, restoring original scale and preserving zeros.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X_scaled</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>H</em><em>, </em><em>W</em><em>)</em>) – Standardized data array.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>X_orig</strong> – Original data array with zero-mask preserved.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function" id="module-doppleriann.data.shell_generation">
+<dt class="sig sig-object py" id="doppleriann.data.shell_generation.generate_hidden_signals">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.shell_generation.</span></span><span class="sig-name descname"><span class="pre">generate_hidden_signals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waves_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_vals_flux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_vals_temp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'act'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ds_amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.shell_generation.generate_hidden_signals" title="Link to this definition"></a></dt>
+<dd><p>Injects a hidden planetary signal into provided flux and/or temperature spectra time series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>waves_obs</strong> (<em>np.ndarray</em>) – Wavelength array used to build SpectrumData.</p></li>
+<li><p><strong>dates</strong> (<em>np.ndarray</em>) – Observation Julian dates.</p></li>
+<li><p><strong>spec_vals_flux</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Flux and temperature spectra arrays (2D). At least one must be provided.</p></li>
+<li><p><strong>spec_vals_temp</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Flux and temperature spectra arrays (2D). At least one must be provided.</p></li>
+<li><p><strong>spec_type</strong> (<em>str</em>) – Spectrum type tag (e.g., ‘act’).</p></li>
+<li><p><strong>ds_amplitude</strong> (<em>float</em><em>, </em><em>optional</em>) – Doppler semi-amplitude (m/s).</p></li>
+<li><p><strong>period_range</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Range of orbital periods to choose randomly from.</p></li>
+<li><p><strong>save_to</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Directory path to save results. If None, results are only returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>{</dt><dd><p>“inj_flux”: ndarray or None,
+“inj_temp”: ndarray or None,
+“flux_master”: ndarray or None,
+“temp_master”: ndarray or None,
+“params”: {“phase_offset”: float, “ds”: float, “period”: float}</p>
+</dd>
+</dl>
+<p>}</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.data.shell_generation.generate_data">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.data.shell_generation.</span></span><span class="sig-name descname"><span class="pre">generate_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_it</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_flux_master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_temp_master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_err_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_err_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waves_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.1,</span> <span class="pre">2.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_reso</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'act'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_shifts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.data.shell_generation.generate_data" title="Link to this definition"></a></dt>
+<dd><p>Generate synthetic datasets (flux + temperature) with random or controlled
+Doppler injections and their corresponding shell diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_it</strong> (<em>int</em>) – Iteration index (for file naming).</p></li>
+<li><p><strong>spec_flux</strong> (<em>np.ndarray</em>) – Input spectra arrays (flux and temperature).</p></li>
+<li><p><strong>spec_temp</strong> (<em>np.ndarray</em>) – Input spectra arrays (flux and temperature).</p></li>
+<li><p><strong>spec_flux_master</strong> (<em>np.ndarray</em>) – Corresponding master (reference) spectra.</p></li>
+<li><p><strong>spec_temp_master</strong> (<em>np.ndarray</em>) – Corresponding master (reference) spectra.</p></li>
+<li><p><strong>flux_err_val</strong> (<em>np.ndarray</em>) – Per-pixel uncertainties for flux and temperature.</p></li>
+<li><p><strong>temp_err_val</strong> (<em>np.ndarray</em>) – Per-pixel uncertainties for flux and temperature.</p></li>
+<li><p><strong>waves_obs</strong> (<em>np.ndarray</em>) – Observed wavelengths array.</p></li>
+<li><p><strong>dates</strong> (<em>np.ndarray</em>) – Julian dates for each observation.</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em>) – Directory where generated .h5 files will be stored.</p></li>
+<li><p><strong>doppler_shift_range</strong> (<em>tuple</em><em>(</em><em>float</em><em>, </em><em>float</em><em>)</em>) – Min and max Doppler shift amplitudes [m/s].</p></li>
+<li><p><strong>n_reso</strong> (<em>int</em>) – Shell resolution.</p></li>
+<li><p><strong>spec_type</strong> (<em>str</em>) – Spectrum type identifier (e.g., ‘act’).</p></li>
+<li><p><strong>random_shifts</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, apply random Doppler shifts per spectrum (randomized amplitudes and phases).
+If False, inject a single coherent sinusoidal planetary signal.</p></li>
+<li><p><strong>period</strong> (<em>float</em><em>, </em><em>optional</em>) – Orbital period in days (required if random_shifts=False).</p></li>
+<li><p><strong>doppler_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – Semi-amplitude [m/s] (required if random_shifts=False).</p></li>
+<li><p><strong>phase_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – Initial orbital phase (optional, random if not provided).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-doppleriann.networks.base_networks">
+<span id="networks"></span><h3>Networks<a class="headerlink" href="#module-doppleriann.networks.base_networks" title="Link to this heading"></a></h3>
+<section id="doppleriann-networks-module-base-classes">
+<h4>DopplerIANN Networks Module - Base Classes<a class="headerlink" href="#doppleriann-networks-module-base-classes" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+This module defines the foundational classes for all neural
+network architectures in DopplerIANN, including supervised
+models (e.g., CNNs, MLPs) and variational autoencoders (VAEs).
+It provides shared functionality for dropout handling,
+Monte Carlo uncertainty estimation, and model loading.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SuperVAE">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.base_networks.</span></span><span class="sig-name descname"><span class="pre">SuperVAE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latent_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actfn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tanh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcdropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SuperVAE" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for Variational Autoencoders (VAEs).</p>
+<p>Provides shared functionality for VAE subclasses, including
+Monte Carlo dropout prediction and model loading with
+DopplerIANN’s custom TensorFlow layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>latent_dim</strong> (<em>int</em>) – Dimensionality of the latent representation.</p></li>
+<li><p><strong>dropout</strong> (<em>float</em><em>, </em><em>optional</em>) – Dropout rate applied to network layers (default is 0.2).</p></li>
+<li><p><strong>actfn</strong> (<em>str</em><em>, </em><em>optional</em>) – Activation function used in layers (default is ‘tanh’).</p></li>
+<li><p><strong>mcdropout</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enables Monte Carlo Dropout during inference (default is True).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SuperVAE.mcdo_predict">
+<span class="sig-name descname"><span class="pre">mcdo_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_dropout_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SuperVAE.mcdo_predict" title="Link to this definition"></a></dt>
+<dd><p>Perform Monte Carlo Dropout predictions for a VAE.</p>
+<p>Runs multiple stochastic forward passes through the encoder
+and decoder to estimate predictive uncertainty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testset</strong> (<em>array-like</em>) – Input data to perform stochastic predictions on.</p></li>
+<li><p><strong>encoder</strong> (<em>tf.keras.Model</em>) – Encoder part of the VAE.</p></li>
+<li><p><strong>decoder</strong> (<em>tf.keras.Model</em>) – Decoder part of the VAE.</p></li>
+<li><p><strong>mc_dropout_num</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of Monte Carlo passes to perform (default is 50).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary containing means and standard deviations of
+encoded and decoded predictions:
+{</p>
+<blockquote>
+<div><p>’mean_encoder’: np.ndarray,
+‘std_encoder’: np.ndarray,
+‘mean’: np.ndarray,
+‘std’: np.ndarray</p>
+</div></blockquote>
+<p>}</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SuperVAE.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SuperVAE.load_model" title="Link to this definition"></a></dt>
+<dd><p>Load a trained VAE model with DopplerIANN custom layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_name</strong> (<em>str</em>) – Path to the saved model file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded TensorFlow model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.keras.Model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SuperVAE.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SuperVAE.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Abstract method to build the TensorFlow model.</p>
+<p>Subclasses must implement this method to define
+the encoder, decoder, and full VAE architecture.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SupervisedNET">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.base_networks.</span></span><span class="sig-name descname"><span class="pre">SupervisedNET</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actfn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'relu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcdropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SupervisedNET" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for supervised neural networks (MLPs, CNNs, etc.).</p>
+<p>Provides shared initialization, dropout management, and
+Monte Carlo Dropout prediction methods for regression or
+classification networks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deep</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Defines the number of neurons in each dense layer (default [100, 100, 100]).</p></li>
+<li><p><strong>actfn</strong> (<em>str</em><em>, </em><em>optional</em>) – Activation function for layers (default is ‘relu’).</p></li>
+<li><p><strong>dropout</strong> (<em>float</em><em>, </em><em>optional</em>) – Dropout rate applied to layers (default is 0.2).</p></li>
+<li><p><strong>mcdropout</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enables Monte Carlo Dropout for uncertainty estimation (default is True).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SupervisedNET.mcdo_predict">
+<span class="sig-name descname"><span class="pre">mcdo_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">testset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_dropout_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SupervisedNET.mcdo_predict" title="Link to this definition"></a></dt>
+<dd><p>Perform Monte Carlo Dropout predictions for supervised models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>testset</strong> (<em>array-like</em>) – Input dataset for prediction.</p></li>
+<li><p><strong>model</strong> (<em>tf.keras.Model</em>) – Trained Keras model with dropout layers.</p></li>
+<li><p><strong>mc_dropout_num</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of stochastic forward passes (default is 50).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Dictionary containing mean and standard deviation of predictions:
+{</p>
+<blockquote>
+<div><p>’mean’: np.ndarray,
+‘std’: np.ndarray</p>
+</div></blockquote>
+<p>}</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SupervisedNET.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SupervisedNET.load_model" title="Link to this definition"></a></dt>
+<dd><p>Load a trained supervised model with custom DopplerIANN layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_name</strong> (<em>str</em>) – Path to the saved model file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded TensorFlow model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.keras.Model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.base_networks.SupervisedNET.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.base_networks.SupervisedNET.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Abstract method to build the TensorFlow model.</p>
+<p>Subclasses must implement this method to define
+their specific supervised architecture.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="doppleriann-networks-module-custom-tensorflow-layers">
+<span id="module-doppleriann.networks.net_blocks"></span><h4>DopplerIANN Networks Module - Custom TensorFlow Layers<a class="headerlink" href="#doppleriann-networks-module-custom-tensorflow-layers" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+——————————————————-
+Collection of custom TensorFlow/Keras layers and helper functions
+used in DopplerIANN for neural network regularization, uncertainty
+quantification (Monte Carlo dropout), and variational autoencoders.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.MCDropout">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">MCDropout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.MCDropout" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<p>Monte Carlo Dropout layer.</p>
+<p>Enables dropout to remain active during inference, allowing stochastic
+forward passes for uncertainty estimation and Bayesian approximation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – Dropout rate (probability of dropping a unit).</p></li>
+<li><p><strong>is_disabled</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, disables dropout completely (default is False).</p></li>
+<li><p><strong>noise_shape</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Shape of the dropout noise mask (default is None).</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the layer.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to the Keras Layer base class.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.MCDropout.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#doppleriann.networks.net_blocks.MCDropout.call" title="Link to this definition"></a></dt>
+<dd><p>Apply dropout during both training and inference (if not disabled).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>tf.Tensor</em>) – Input tensor to apply dropout on.</p></li>
+<li><p><strong>training</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the layer is currently in training mode.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor after dropout or unmodified input if disabled.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.MCDropout.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#doppleriann.networks.net_blocks.MCDropout.get_config" title="Link to this definition"></a></dt>
+<dd><p>Returns the configuration of the layer for serialization.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.KLDivergenceLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">KLDivergenceLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.KLDivergenceLayer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<p>Custom layer that computes and adds the KL divergence loss term.</p>
+<p>Used in Variational Autoencoders (VAEs) to regularize the latent space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>beta</strong> (<em>float</em><em>, </em><em>optional</em>) – Scaling factor for the KL divergence loss (default is 1.0).</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.KLDivergenceLayer.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.KLDivergenceLayer.call" title="Link to this definition"></a></dt>
+<dd><p>Compute the KL divergence and add it as a model loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>list</em><em> of </em><em>tf.Tensor</em>) – [z_mean, z_log_sigma] from the encoder.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mean latent vector (z_mean) for downstream processing.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.ReconstructionLossLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">ReconstructionLossLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<p>Custom layer to compute and add a reconstruction (MSE) loss term.</p>
+<p>Typically used in autoencoders or VAEs to penalize the difference
+between input and reconstructed output.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.ReconstructionLossLayer.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer.call" title="Link to this definition"></a></dt>
+<dd><p>Compute the mean squared reconstruction loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>list</em><em> of </em><em>tf.Tensor</em>) – [x_true, x_pred] - ground truth and reconstructed tensors.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted tensor (x_pred), passed through unchanged.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.Resize1DTensorLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">Resize1DTensorLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<p>Custom layer that resizes a 1D tensor using bilinear interpolation.</p>
+<p>Useful for upsampling feature sequences in 1D convolutional models.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.Resize1DTensorLayer.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer.call" title="Link to this definition"></a></dt>
+<dd><p>Resize the temporal dimension of a 1D tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>tf.Tensor</em>) – Input tensor of shape (batch, time, channels).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resized tensor with temporal dimension = target_len.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.Resize1DTensorLayer.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer.get_config" title="Link to this definition"></a></dt>
+<dd><p>Return configuration for serialization.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.L1LatentRegularization">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">L1LatentRegularization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.L1LatentRegularization" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></p>
+<p>Applies L1 regularization directly to latent variables in VAEs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>l1_lambda</strong> (<em>float</em><em>, </em><em>optional</em>) – Regularization coefficient (default is 1e-3).</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.L1LatentRegularization.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.L1LatentRegularization.call" title="Link to this definition"></a></dt>
+<dd><p>Add L1 regularization loss term on the latent vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>tf.Tensor</em>) – Latent representation tensor.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The same latent tensor, passed through unchanged.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.resize_1d_tensor">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">resize_1d_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_len</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.resize_1d_tensor" title="Link to this definition"></a></dt>
+<dd><p>Resize a 1D tensor along its temporal dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>tf.Tensor</em>) – Input tensor of shape (batch, time, channels).</p></li>
+<li><p><strong>target_len</strong> (<em>int</em>) – Target temporal length after resizing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resized tensor with new temporal length.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.networks.net_blocks.sampling">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.networks.net_blocks.</span></span><span class="sig-name descname"><span class="pre">sampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.net_blocks.sampling" title="Link to this definition"></a></dt>
+<dd><p>Reparameterization trick for VAEs.</p>
+<p>Samples from a normal distribution using the mean and log-variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>list</em><em> of </em><em>tf.Tensor</em>) – [z_mean, z_log_sigma] from encoder output.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sampled latent vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="doppleriann-networks-module-autoencoders">
+<span id="module-doppleriann.networks.aes"></span><h4>DopplerIANN Networks Module - Autoencoders<a class="headerlink" href="#doppleriann-networks-module-autoencoders" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+Variable 1D Convolutional Variational Autoencoder (VAE) and
+Autoencoder architectures for shell-based or spectral inputs.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.aes.VaeCNN1D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.aes.</span></span><span class="sig-name descname"><span class="pre">VaeCNN1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.aes.VaeCNN1D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE" title="doppleriann.networks.base_networks.SuperVAE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SuperVAE</span></code></a></p>
+<p>Flexible 1D Convolutional Variational Autoencoder (VAE).</p>
+<p>This model allows dynamic configuration of convolutional and
+dense layers for 1D shell-based or spectral representations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_inputs</strong> (<em>int</em>) – Length of the 1D input vector (e.g., number of spectral bins).</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List specifying (filters, kernel_size) for convolutional layers.
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – List specifying fully connected layer sizes.
+Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for the parent SuperVAE class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(vae, encoder, decoder) TensorFlow Keras models.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.aes.VaeCNN1D.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.aes.VaeCNN1D.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Builds the flexible 1D CNN VAE model dynamically based on user-defined layers.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.aes.AeCNN1D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.aes.</span></span><span class="sig-name descname"><span class="pre">AeCNN1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.aes.AeCNN1D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Flexible 1D Convolutional Autoencoder.</p>
+<p>This model provides a convolutional autoencoder architecture with
+L1 regularization for sparse latent representations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_inputs</strong> (<em>int</em>) – Length of the flattened input vector.</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List of (filters, kernel_size) for convolutional layers.
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Sizes of fully connected layers.
+Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters passed to SupervisedNET.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(autoencoder, encoder, decoder) TensorFlow Keras models.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.aes.AeCNN1D.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.aes.AeCNN1D.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Build the flexible 1D CNN Autoencoder architecture.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="doppleriann-networks-module-cnn-architectures">
+<span id="module-doppleriann.networks.cnns"></span><h4>DopplerIANN Networks Module - CNN Architectures<a class="headerlink" href="#doppleriann-networks-module-cnn-architectures" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+1D and 2D Convolutional Neural Networks (CNNs)
+for regression and supervised learning tasks using
+shell-based or spectral representations.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN1D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.cnns.</span></span><span class="sig-name descname"><span class="pre">ShellCNN1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN1D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Flexible 1D Convolutional Neural Network (CNN) for supervised regression tasks.</p>
+<p>This model dynamically constructs 1D convolutional and dense layers for
+processing shell-based or spectral inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em>) – Shape of the 1D input data.</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of output values (e.g., RV, FWHM, activity index).</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Learning rate for the optimizer (default: 0.001).</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List of (filters, kernel_size) for each convolutional layer.
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – List specifying neuron counts for fully connected layers.
+Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for SupervisedNET.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN1D.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN1D.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Build and return a 1D CNN model dynamically based on user-defined architecture.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN1DDual">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.cnns.</span></span><span class="sig-name descname"><span class="pre">ShellCNN1DDual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN1DDual" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Dual-input 1D Convolutional Neural Network (CNN).</p>
+<p>This architecture processes two separate 1D shell-based inputs
+through parallel convolutional branches and merges their extracted
+features before regression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em>) – Shape of each individual 1D input array.</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of output regression values.</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Learning rate for the optimizer (default: 0.001).</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List of (filters, kernel_size) defining Conv1D layers.
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Number of neurons in fully connected layers (default: [512, 256]).</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments for SupervisedNET.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN1DDual.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN1DDual.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Builds and compiles a 1D CNN model with two input branches.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN2Channel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.cnns.</span></span><span class="sig-name descname"><span class="pre">ShellCNN2Channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN2Channel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Early-fusion 2D CNN that processes two shell matrices as a single 2-channel input.</p>
+<p>This approach stacks two shell representations (e.g., flux and temperature)
+as separate channels within a single 2D input tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em>) – Input shape including channels (e.g., (9, 9, 2)).</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of output regression targets (e.g., RV and DS).</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Optimizer learning rate (default: 0.001).</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List of (filters, kernel_size) for Conv2D layers.
+Default is [(128, 3), (256, 3)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Fully connected layer sizes. Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for SupervisedNET.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN2Channel.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN2Channel.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Build and return a 2-channel early-fusion Conv2D regression model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN2D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.cnns.</span></span><span class="sig-name descname"><span class="pre">ShellCNN2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN2D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Flexible 2D Convolutional Neural Network (CNN) for regression tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em>) – Shape of the 2D input matrix.</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of regression outputs.</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Optimizer learning rate (default: 0.001).</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – List specifying (filters, kernel_size) for Conv2D layers.
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – List of neuron counts for dense layers.
+Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to SupervisedNET.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.cnns.ShellCNN2D.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cnns.ShellCNN2D.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Build and return a flexible 2D CNN regression model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="doppleriann-networks-module-conditional-vaes">
+<span id="module-doppleriann.networks.cvae"></span><h4>DopplerIANN Networks Module - Conditional VAEs<a class="headerlink" href="#doppleriann-networks-module-conditional-vaes" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+Conditional 1D Convolutional Variational Autoencoder (CVAE)
+for shell-based or spectral representations conditioned on
+astrophysical or auxiliary parameters.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.cvae.CondVaeCNN1D">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.cvae.</span></span><span class="sig-name descname"><span class="pre">CondVaeCNN1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_conditions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cvae.CondVaeCNN1D" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE" title="doppleriann.networks.base_networks.SuperVAE"><code class="xref py py-class docutils literal notranslate"><span class="pre">SuperVAE</span></code></a></p>
+<p>Conditional 1D Convolutional Variational Autoencoder (CVAE).</p>
+<p>This model learns a latent representation of 1D shell-based or spectral
+data while conditioning on auxiliary physical variables (e.g., stellar
+activity indices, RVs, or other metadata).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_inputs</strong> (<em>int</em>) – Number of input features (e.g., number of wavelength bins).</p></li>
+<li><p><strong>n_conditions</strong> (<em>int</em>) – Number of auxiliary conditioning variables.</p></li>
+<li><p><strong>conv_layers</strong> (<em>list</em><em> of </em><em>tuple</em><em>, </em><em>optional</em>) – Convolutional layer configuration, each tuple as (filters, kernel_size).
+Default is [(128, 5), (256, 5)].</p></li>
+<li><p><strong>dense_layers</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Dense layer configuration for encoder and decoder.
+Default is [512, 256].</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments passed to <cite>SuperVAE</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.cvae.CondVaeCNN1D.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.cvae.CondVaeCNN1D.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Build and return the full Conditional VAE model (encoder, decoder, and CVAE).</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="doppleriann-networks-module-kolmogorov-arnold-networks-kan">
+<span id="module-doppleriann.networks.kann"></span><h4>DopplerIANN Networks Module - Kolmogorov-Arnold Networks (KAN)<a class="headerlink" href="#doppleriann-networks-module-kolmogorov-arnold-networks-kan" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+Kolmogorov-Arnold Network (KAN) implementation for shell-based
+or spectral inputs, using spline-like nonlinearities for flexible,
+interpretable regression modeling.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.kann.KAN">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.kann.</span></span><span class="sig-name descname"><span class="pre">KAN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actfn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tanh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcdropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.kann.KAN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Kolmogorov–Arnold Network (KAN) Spectrum Feedforward Neural Network.</p>
+<p>A feedforward neural network that approximates continuous mappings
+using univariate spline-based activation functions, inspired by
+the Kolmogorov–Arnold representation theorem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_inputs</strong> (<em>int</em>) – Number of input features (e.g., number of wavelength bins).</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of outputs (e.g., target regression values).</p></li>
+<li><p><strong>deep</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Number of neurons in each hidden layer. Default is [50, 50].</p></li>
+<li><p><strong>actfn</strong> (<em>str</em><em>, </em><em>optional</em>) – Standard activation function for dense layers (default: ‘tanh’).</p></li>
+<li><p><strong>dropout</strong> (<em>float</em><em>, </em><em>optional</em>) – Dropout rate between layers. Default is 0.2.</p></li>
+<li><p><strong>mcdropout</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use Monte Carlo Dropout for Bayesian sampling. Default is True.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to <cite>SupervisedNET</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.kann.KAN.univariate_activation">
+<span class="sig-name descname"><span class="pre">univariate_activation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.kann.KAN.univariate_activation" title="Link to this definition"></a></dt>
+<dd><p>Custom activation function using cubic UnivariateSpline interpolation.</p>
+<p>Each layer applies a smooth, spline-based nonlinearity over the
+neuron outputs, enabling flexible functional approximations
+with interpretable mappings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tf.Tensor</em>) – Input tensor to apply the spline-based activation.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor with spline-based nonlinear transformation applied.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.kann.KAN.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.kann.KAN.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Builds and compiles the SpecKAN model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="doppleriann-networks-module-multilayer-perceptron-mlp">
+<span id="module-doppleriann.networks.mlp"></span><h4>DopplerIANN Networks Module - Multilayer Perceptron (MLP)<a class="headerlink" href="#doppleriann-networks-module-multilayer-perceptron-mlp" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+———————————————————-
+Feedforward Multilayer Perceptron (MLP) architectures for
+supervised regression or classification tasks using shell-
+based or spectral inputs.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.networks.mlp.MLP">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.networks.mlp.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_outputs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.mlp.MLP" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET" title="doppleriann.networks.base_networks.SupervisedNET"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></p>
+<p>Feedforward Multilayer Perceptron (MLP) for supervised tasks.</p>
+<p>A flexible fully-connected neural network suitable for regression
+or classification using shell representations, spectra, or derived
+astrophysical data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_inputs</strong> (<em>int</em>) – Number of input features (e.g., flattened shell size or spectral bins).</p></li>
+<li><p><strong>n_outputs</strong> (<em>int</em>) – Number of outputs (e.g., RV, BIS, or other scalar targets).</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for the parent <cite>SupervisedNET</cite> class, such as
+dropout rate, activation function, and architecture depth.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.networks.mlp.MLP.model_tf">
+<span class="sig-name descname"><span class="pre">model_tf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.networks.mlp.MLP.model_tf" title="Link to this definition"></a></dt>
+<dd><p>Abstract method to build the TensorFlow model.</p>
+<p>Subclasses must implement this method to define
+their specific supervised architecture.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-doppleriann.physics.CCFcalculator">
+<span id="physics"></span><h3>Physics<a class="headerlink" href="#module-doppleriann.physics.CCFcalculator" title="Link to this heading"></a></h3>
+<hr class="docutils" />
+<p>Cross-Correlation Function (CCF) tools for stellar spectra analysis.
+Includes CCF template generation, Doppler shift computation,
+and activity indicator extraction (RV, FWHM, BIS).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.physics.CCFcalculator.</span></span><span class="sig-name descname"><span class="pre">CCFcalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelimits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6500.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ccf_windows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ccf_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">125.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'map'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Calculates cross-correlation functions (CCFs) from stellar spectra
+using a line mask template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wrapper</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, runs in Python mode only. If False, uses compiled C++ code for BIS fitting.</p></li>
+<li><p><strong>wavelimits</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Lower and upper wavelength limits (default: 4000.0 - 6500.0 A).</p></li>
+<li><p><strong>ccf_windows</strong> (<em>int</em><em>, </em><em>optional</em>) – Velocity range for the CCF (default: 10000 m/s).</p></li>
+<li><p><strong>ccf_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Step size in velocity space for the CCF (default: 125 m/s).</p></li>
+<li><p><strong>map_fn</strong> (<em>function</em><em>, </em><em>optional</em>) – Map function (default: Python built-in map).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_1">
+<span class="sig-name descname"><span class="pre">calculate_CCF_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength_extend</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_1" title="Link to this definition"></a></dt>
+<dd><p>Builds a CCF mask template by shifting spectral lines across a velocity grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>velocity_array</strong> (<em>ndarray</em>) – Array of velocity values (m/s).</p></li>
+<li><p><strong>wavelength</strong> (<em>ndarray</em>) – Base wavelength grid.</p></li>
+<li><p><strong>wavelength_line</strong> (<em>ndarray</em>) – Mask line wavelengths.</p></li>
+<li><p><strong>weight_line</strong> (<em>ndarray</em>) – Mask line weights.</p></li>
+<li><p><strong>wavelength_extend</strong> (<em>ndarray</em>) – Extended wavelength grid for interpolation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mask_template</strong> – 2D CCF mask array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_2">
+<span class="sig-name descname"><span class="pre">calculate_CCF_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_2" title="Link to this definition"></a></dt>
+<dd><p>Computes the CCF by correlating an observed spectrum with the precomputed mask template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spectrum</strong> (<em>ndarray</em>) – Observed stellar spectrum on the defined wavelength grid.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>CCF</strong> – Computed cross-correlation function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator.Delta_wavelength">
+<span class="sig-name descname"><span class="pre">Delta_wavelength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator.Delta_wavelength" title="Link to this definition"></a></dt>
+<dd><p>Converts a velocity shift into a wavelength difference using the relativistic Doppler formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>float</em>) – Velocity shift (m/s).</p></li>
+<li><p><strong>wavelength0</strong> (<em>float</em>) – Reference wavelength.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>delta_wavelength</strong> – Wavelength difference corresponding to the velocity shift.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator.calc_mask">
+<span class="sig-name descname"><span class="pre">calc_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelength_extend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength_line_shift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">begin_wave</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">820</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hole_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calc_mask" title="Link to this definition"></a></dt>
+<dd><p>Constructs a line mask shifted in wavelength space for each velocity step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavelength_extend</strong> (<em>ndarray</em>) – Extended wavelength grid.</p></li>
+<li><p><strong>wavelength_line_shift</strong> (<em>ndarray</em>) – Doppler-shifted line wavelengths.</p></li>
+<li><p><strong>weight_line</strong> (<em>ndarray</em>) – Mask line weights.</p></li>
+<li><p><strong>begin_wave</strong> (<em>float</em>) – Starting wavelength of the extended grid.</p></li>
+<li><p><strong>mask_width</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of mask regions (default: 820 m/s converted to wavelength units).</p></li>
+<li><p><strong>hole_width</strong> (<em>float</em><em>, </em><em>optional</em>) – Optional hole width for mask gaps.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mask</strong> – 1D array containing the generated CCF mask.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.CCFcalculator.ccf_calculator">
+<span class="sig-name descname"><span class="pre">ccf_calculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waves</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.CCFcalculator.ccf_calculator" title="Link to this definition"></a></dt>
+<dd><p>Computes the Cross-Correlation Function (CCF) for an input spectrum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spectra</strong> (<em>ndarray</em>) – Input stellar spectrum.</p></li>
+<li><p><strong>waves</strong> (<em>ndarray</em>) – Wavelength grid of the input spectrum.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul>
+<li><p><em>If wrapper is True</em> –</p>
+<dl class="simple">
+<dt>ccf_data<span class="classifier">ndarray</span></dt><dd><p>Array containing velocity and CCF values.</p>
+</dd>
+<dt>ccf_error<span class="classifier">ndarray</span></dt><dd><p>Estimated errors for the CCF.</p>
+</dd>
+</dl>
+</li>
+<li><p><em>If wrapper is False</em> – ccf_data : ndarray
+ccf_error : ndarray
+span_harps : float</p>
+<blockquote>
+<div><p>Line bisector inverse slope (BIS).</p>
+</div></blockquote>
+<dl class="simple">
+<dt>vrad_harps<span class="classifier">float</span></dt><dd><p>Measured radial velocity.</p>
+</dd>
+<dt>vrad_err<span class="classifier">float</span></dt><dd><p>Radial velocity uncertainty.</p>
+</dd>
+<dt>fwhm_harps<span class="classifier">float</span></dt><dd><p>Full width at half maximum of the CCF.</p>
+</dd>
+<dt>fwhm_err<span class="classifier">float</span></dt><dd><p>Uncertainty of FWHM.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.CCFcalculator.astro_data">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.CCFcalculator.</span></span><span class="sig-name descname"><span class="pre">astro_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wave_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrapper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.CCFcalculator.astro_data" title="Link to this definition"></a></dt>
+<dd><p>Extracts radial velocity (RV), FWHM, BIS, and their uncertainties from a set of spectra.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>ndarray</em>) – Input spectra array (n_samples, n_wavelengths).</p></li>
+<li><p><strong>wave_cols</strong> (<em>ndarray</em>) – Wavelength grid for the spectra.</p></li>
+<li><p><strong>wrapper</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to use the Python-only mode (default: True).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>astro_array</strong> –</p>
+<dl class="simple">
+<dt>Array of shape (N, 5):</dt><dd><ul class="simple">
+<li><p>column 0: radial velocity (RV)</p></li>
+<li><p>column 1: RV error</p></li>
+<li><p>column 2: FWHM</p></li>
+<li><p>column 3: FWHM error</p></li>
+<li><p>column 4: BIS (bisector span)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" id="module-doppleriann.physics.shell_utils" />
+<p>Collection of tools to manipulate shell representations of stellar spectra.
+Includes methods for planetary signal injection, removal, and extraction of
+Doppler-orthogonal components (shape shells).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.shell_utils.inject_planet_at_shell_level">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.shell_utils.</span></span><span class="sig-name descname"><span class="pre">inject_planet_at_shell_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shell_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift_amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomize_phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.shell_utils.inject_planet_at_shell_level" title="Link to this definition"></a></dt>
+<dd><p>Injects a planetary signal at the shell level, considering the orbital period and observation dates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shell_stats</strong> (<em>dict</em>) – Dictionary containing shell data and gradients. Must include:
+- ‘shell_df’: 2D DataFrame of the base shell.
+- ‘mean_grad_map’: 2D array of mean gradients per bin.
+- ‘mean_wave_map’: 2D array of mean wavelengths per bin.</p></li>
+<li><p><strong>dates</strong> (<em>ndarray</em>) – Observation times (Julian dates) corresponding to each shell.</p></li>
+<li><p><strong>doppler_shift_amplitude</strong> (<em>float</em>) – Semi-amplitude of the injected Doppler shift in m/s.</p></li>
+<li><p><strong>period_days</strong> (<em>float</em>) – Orbital period of the planetary signal in days.</p></li>
+<li><p><strong>reference_date</strong> (<em>float</em>) – Reference Julian date for phase calculation.</p></li>
+<li><p><strong>c</strong> (<em>float</em>) – Speed of light in m/s (typically 299792458).</p></li>
+<li><p><strong>randomize_phase</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to introduce a random phase offset (default is True).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>injected_shells</strong> (<em>list of pd.DataFrame</em>) – List of shells with injected planetary signals, one per observation date.</p></li>
+<li><p><strong>phase_values</strong> (<em>ndarray</em>) – Phase values used for each injection, in radians.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.shell_utils.remove_planet_signal_shell_level">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.shell_utils.</span></span><span class="sig-name descname"><span class="pre">remove_planet_signal_shell_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shell_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift_amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.shell_utils.remove_planet_signal_shell_level" title="Link to this definition"></a></dt>
+<dd><p>Removes a previously injected planetary signal from shell-level data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shell_stats</strong> (<em>dict</em>) – Dictionary containing shell-level quantities:
+- ‘shell_df’: 2D DataFrame of the injected shell.
+- ‘mean_grad_map’: 2D array of mean gradients per bin.
+- ‘mean_wave_map’: 2D array of mean wavelengths per bin.</p></li>
+<li><p><strong>dates</strong> (<em>ndarray</em>) – Observation times (Julian dates) corresponding to each shell.</p></li>
+<li><p><strong>doppler_shift_amplitude</strong> (<em>float</em>) – Semi-amplitude of the injected Doppler shift in m/s.</p></li>
+<li><p><strong>period_days</strong> (<em>float</em>) – Orbital period of the planetary signal in days.</p></li>
+<li><p><strong>reference_date</strong> (<em>float</em>) – Reference Julian date used in the injection.</p></li>
+<li><p><strong>c</strong> (<em>float</em>) – Speed of light in m/s (typically 299792458).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>cleaned_shells</strong> – List of shells with the injected planetary signal removed, one per observation date.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.shell_utils.extract_shape_shell">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.shell_utils.</span></span><span class="sig-name descname"><span class="pre">extract_shape_shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shell_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shell_dop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.shell_utils.extract_shape_shell" title="Link to this definition"></a></dt>
+<dd><p>Extracts the “shape shell” component by projecting an observed shell onto a
+Doppler shell and subtracting the Doppler-aligned component.</p>
+<p>This isolates the residual (activity-related) part of the shell representation,
+orthogonal to the Doppler-induced deformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shell_obs</strong> (<em>ndarray</em><em> or </em><em>pd.DataFrame</em>) – Shell data for the observed spectrum.</p></li>
+<li><p><strong>shell_dop</strong> (<em>ndarray</em><em> or </em><em>pd.DataFrame</em>) – Shell data for the Doppler-shifted (reference) spectrum.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>shell_shape_df</strong> – 2D shell representation of the shape shell, representing Doppler-orthogonal features.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" id="module-doppleriann.physics.spec_transform" />
+<p>Tools to transform and process stellar spectra for DopplerIANN.
+Includes methods to generate shell representations, apply Doppler shifts,
+mask the spectra, or get the temperature given the flux through interpolation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.SpectrumData">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">doppleriann.physics.spec_transform.</span></span><span class="sig-name descname"><span class="pre">SpectrumData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.SpectrumData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class providing spectral transformation utilities such as
+shell representation generation, Doppler shift injection,
+and spectral filtering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wavelengths</strong> (<em>array-like</em>) – Array of wavelength values (in Angstroms or nanometers)
+corresponding to the input spectra.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.SpectrumData.shell_diagram">
+<span class="sig-name descname"><span class="pre">shell_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">master_spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_reso</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_limits_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.SpectrumData.shell_diagram" title="Link to this definition"></a></dt>
+<dd><p>Generate a shell representation of the spectrum based on gradients
+and flux values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spec_input</strong> (<em>array</em>) – Input observed spectrum.</p></li>
+<li><p><strong>master_spec</strong> (<em>array</em>) – Reference or master spectrum.</p></li>
+<li><p><strong>spec_err</strong> (<em>array</em>) – Spectrum uncertainties or noise estimates.</p></li>
+<li><p><strong>n_reso</strong> (<em>int</em>) – Resolution of the shell map (number of bins along each axis).</p></li>
+<li><p><strong>scale_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Scaling factor for the velocity gradient (default 1.0).</p></li>
+<li><p><strong>num_limits_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum fraction of valid points per bin (default 0.0).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>shell_stats</strong> –</p>
+<dl class="simple">
+<dt>Dictionary containing:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>shell_df<span class="classifier">pd.DataFrame</span></dt><dd><p>2D shell map of mean flux residuals.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>density_map<span class="classifier">np.ndarray</span></dt><dd><p>Density weighting map.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>mean_grad_map<span class="classifier">np.ndarray</span></dt><dd><p>Mean gradient per bin.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>mean_wave_map<span class="classifier">np.ndarray</span></dt><dd><p>Mean wavelength per bin.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.SpectrumData.planet_inj">
+<span class="sig-name descname"><span class="pre">planet_inj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_spec_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift_amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.SpectrumData.planet_inj" title="Link to this definition"></a></dt>
+<dd><p>Injects a planetary signal by applying a Doppler shift to the spectral time series given a period and semi amplitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_spec_data</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>, </em><em>M</em><em>)</em>) – The full spectral time series (N spectra × M wavelengths).</p></li>
+<li><p><strong>dates</strong> (<em>ndarray</em><em> of </em><em>shape</em><em> (</em><em>N</em><em>,</em><em>)</em>) – Observation times in Julian dates.</p></li>
+<li><p><strong>doppler_shift_amplitude</strong> (<em>float</em>) – Semi-amplitude of the Doppler shift in m/s.</p></li>
+<li><p><strong>period_days</strong> (<em>float</em><em>, </em><em>optional</em>) – Orbital period in days. Default is 20.</p></li>
+<li><p><strong>reference_date</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference Julian date for phase calculation. If None, uses the first date.</p></li>
+<li><p><strong>phase_offset</strong> (<em>float</em><em>, </em><em>optional</em>) – Phase offset in radians applied to the sinusoidal signal. Default is 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>injected_spectra</strong> (<em>ndarray of shape (N, M)</em>) – Spectra after applying Doppler shifts (planet injection).</p></li>
+<li><p><strong>modulated_doppler_shifts</strong> (<em>ndarray of shape (N,)</em>) – Doppler shifts applied to each spectrum, in m/s.</p></li>
+<li><p><strong>phase_values</strong> (<em>ndarray of shape (N,)</em>) – Phase values used to compute the Doppler shifts.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.SpectrumData.inject_random_doppler_shifts">
+<span class="sig-name descname"><span class="pre">inject_random_doppler_shifts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_spec_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doppler_shift_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.05,</span> <span class="pre">0.2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.SpectrumData.inject_random_doppler_shifts" title="Link to this definition"></a></dt>
+<dd><p>Apply random Doppler shifts to each spectrum independently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_spec_data</strong> (<em>ndarray</em>) – Spectral time series (N spectra x M wavelengths).</p></li>
+<li><p><strong>doppler_shift_range</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – Min and max Doppler shifts (m/s).</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Random seed for reproducibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>injected_spectra</strong> (<em>ndarray</em>) – Spectra after random Doppler shifts.</p></li>
+<li><p><strong>doppler_shifts</strong> (<em>ndarray</em>) – Applied Doppler shifts in m/s.</p></li>
+<li><p><strong>phases_dummy</strong> (<em>ndarray</em>) – Placeholder zero phases (for compatibility).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.SpectrumData.kitcat_filtering_mask">
+<span class="sig-name descname"><span class="pre">kitcat_filtering_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_spec_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data/mask_kitcatkitcat_CCF_mask_Sun.npz'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.SpectrumData.kitcat_filtering_mask" title="Link to this definition"></a></dt>
+<dd><p>Apply a spectral mask based on the KITCAT CCF line mask.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_spec_data</strong> (<em>ndarray</em>) – Input spectra to be filtered.</p></li>
+<li><p><strong>mask_dir</strong> (<em>str</em>) – Path to the KITCAT CCF mask file (.npz).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>filtered_flux_dataset</strong> (<em>ndarray</em>) – Spectra after applying the line mask.</p></li>
+<li><p><strong>filtered_index</strong> (<em>ndarray</em>) – Indices of wavelengths that passed the mask filter.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.spec_transform.interp_temp_given_flux">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.spec_transform.</span></span><span class="sig-name descname"><span class="pre">interp_temp_given_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">master_flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.spec_transform.interp_temp_given_flux" title="Link to this definition"></a></dt>
+<dd><p>Interpolate temperature values corresponding to target fluxes,
+restricted to monotonic segments of the reference flux array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_flux</strong> (<em>ndarray</em>) – Target flux values for interpolation.</p></li>
+<li><p><strong>master_flux</strong> (<em>ndarray</em>) – Reference flux array (must contain monotonic chunks).</p></li>
+<li><p><strong>temp_values</strong> (<em>ndarray</em>) – Temperature values corresponding to master_flux.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>interpolated_temp</strong> (<em>ndarray</em>) – Interpolated temperature values.</p></li>
+<li><p><strong>accepted_idx</strong> (<em>ndarray of bool</em>) – Boolean array indicating successfully interpolated points.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="doppleriann-physics-signal-utilities">
+<span id="module-doppleriann.physics.signal_utils"></span><h4>DopplerIANN Physics — Signal Utilities<a class="headerlink" href="#doppleriann-physics-signal-utilities" title="Link to this heading"></a></h4>
+<p>2025
+by Isidro Gomez-Vargas (<a class="reference external" href="mailto:isidro&#46;gomezvargas&#37;&#52;&#48;unige&#46;ch">isidro<span>&#46;</span>gomezvargas<span>&#64;</span>unige<span>&#46;</span>ch</a>)
+——————————————————-</p>
+<p>Collection of signal-processing tools for analyzing radial
+velocity (RV) time series, including long-term trend removal,
+periodogram analysis, and phase recovery methods.</p>
+<p>Functions include:
+- Sinusoidal modeling
+- Polynomial detrending
+- Periodogram generation (GLS)
+- Iterative removal of strongest periodic signals
+- Phase offset recovery and diagnostic plots
+——————————————————-</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.sinusoidal_model">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">sinusoidal_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.sinusoidal_model" title="Link to this definition"></a></dt>
+<dd><p>Sinusoidal model function: A * sin(2πx/T + φ) + C</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – Input time or phase values.</p></li>
+<li><p><strong>A</strong> (<em>float</em>) – Amplitude of the sine wave.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Period of the signal.</p></li>
+<li><p><strong>phi</strong> (<em>float</em>) – Phase offset (radians).</p></li>
+<li><p><strong>C</strong> (<em>float</em>) – Constant offset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Evaluated sinusoidal function values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.long_term_remover">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">long_term_remover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.long_term_remover" title="Link to this definition"></a></dt>
+<dd><p>Removes long-term trends in a time series via polynomial fitting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>times</strong> (<em>array_like</em>) – Observation times.</p></li>
+<li><p><strong>time_series</strong> (<em>array_like</em>) – Measured values (e.g., RVs).</p></li>
+<li><p><strong>degree</strong> (<em>int</em><em>, </em><em>optional</em>) – Degree of the polynomial trend to remove (default: 3).
+If 0, no detrending is applied.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Detrended time series (original minus fitted trend).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.remove_strongest_signals">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">remove_strongest_signals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rvs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_remove</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.remove_strongest_signals" title="Link to this definition"></a></dt>
+<dd><p>Iteratively remove the strongest periodic signals from an RV time series
+using the Generalized Lomb-Scargle (GLS) periodogram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rvs</strong> (<em>array_like</em>) – Radial velocity values.</p></li>
+<li><p><strong>time</strong> (<em>array_like</em>) – Observation times (days).</p></li>
+<li><p><strong>err</strong> (<em>array_like</em>) – Measurement uncertainties.</p></li>
+<li><p><strong>n_remove</strong> (<em>int</em>) – Number of strongest signals to iteratively remove.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Residuals after signal removal.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.recover_phase_offset">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">recover_phase_offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.recover_phase_offset" title="Link to this definition"></a></dt>
+<dd><p>Recover the relative phase offset between injected and observed signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dates</strong> (<em>array_like</em>) – Observation dates.</p></li>
+<li><p><strong>phase_values</strong> (<em>array_like</em>) – Injected or recovered phase values (radians).</p></li>
+<li><p><strong>period_days</strong> (<em>float</em>) – Signal period in days.</p></li>
+<li><p><strong>reference_date</strong> (<em>float</em><em>, </em><em>optional</em>) – Reference date for phase zero. Defaults to the first date.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Circular mean phase offset in fractional phase units [0, 1].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.circ_dist_cycles">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">circ_dist_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.circ_dist_cycles" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.periodogram">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">periodogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rvs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.periodogram" title="Link to this definition"></a></dt>
+<dd><p>Compute a Generalized Lomb-Scargle (GLS) periodogram for radial velocity data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rvs</strong> (<em>array_like</em>) – Radial velocity measurements.</p></li>
+<li><p><strong>time</strong> (<em>array_like</em>) – Observation times (days).</p></li>
+<li><p><strong>err</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Measurement uncertainties. Defaults to None.</p></li>
+<li><p><strong>fap</strong> (<em>float</em><em>, </em><em>optional</em>) – False alarm probability threshold (default: 0.1).</p></li>
+<li><p><strong>min_period</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum period to search (days).</p></li>
+<li><p><strong>max_period</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum period to search (days).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(clp, plevels)
+- clp : pyPeriod.Gls object containing periodogram results.
+- plevels : float, false-alarm probability threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.generate_periodogram_test">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">generate_periodogram_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.generate_periodogram_test" title="Link to this definition"></a></dt>
+<dd><p>Generate and optionally plot GLS periodograms for real vs predicted data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<em>dict</em>) – <dl class="simple">
+<dt>real_rv<span class="classifier">array_like</span></dt><dd><p>Original radial velocities.</p>
+</dd>
+<dt>pred_rv<span class="classifier">array_like</span></dt><dd><p>Predicted radial velocities.</p>
+</dd>
+<dt>pred_ds<span class="classifier">array_like</span></dt><dd><p>Predicted Doppler shifts or derived signal.</p>
+</dd>
+<dt>dates<span class="classifier">array_like</span></dt><dd><p>Observation dates.</p>
+</dd>
+<dt>prefix_name<span class="classifier">str, optional</span></dt><dd><p>Prefix for output plot filenames.</p>
+</dd>
+<dt>shell_type_str<span class="classifier">str, optional</span></dt><dd><p>Optional tag for labeling.</p>
+</dd>
+<dt>spec_type<span class="classifier">str, optional</span></dt><dd><p>Spectrum type (default: ‘solar’).</p>
+</dd>
+<dt>ds_size<span class="classifier">float, optional</span></dt><dd><p>Doppler shift amplitude for annotation.</p>
+</dd>
+<dt>period<span class="classifier">float, optional</span></dt><dd><p>Injected period (days).</p>
+</dd>
+<dt>min_period, max_period<span class="classifier">float, optional</span></dt><dd><p>Period range for GLS computation.</p>
+</dd>
+<dt>fap<span class="classifier">float, optional</span></dt><dd><p>False alarm probability (default: 0.1).</p>
+</dd>
+<dt>plot<span class="classifier">bool, optional</span></dt><dd><p>If True, plot periodograms.</p>
+</dd>
+<dt>savefig<span class="classifier">bool, optional</span></dt><dd><p>If True, save plots to output_dir.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing:
+- fig : matplotlib Figure (if plot=True)
+- clp_rv_real : GLS for real RVs
+- clp_rv_pred : GLS for predicted RVs
+- clp_ds_pred : GLS for predicted DS</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.physics.signal_utils.prior_transform">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.physics.signal_utils.</span></span><span class="sig-name descname"><span class="pre">prior_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.physics.signal_utils.prior_transform" title="Link to this definition"></a></dt>
+<dd><p>Transform unit-cube parameters into physical model parameters for sinusoidal fitting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>u</strong> (<em>array_like</em><em> of </em><em>shape</em><em> (</em><em>4</em><em>,</em><em>)</em>) – Uniform random variables in [0, 1].</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(A, T, phi, C)
+- A : float, amplitude (0-50)
+- T : float, period (1-200)
+- phi : float, phase (-pi to pi)
+- C : float, constant offset (-10 to 10)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-doppleriann.utils.logger_config">
+<span id="utils"></span><h3>Utils<a class="headerlink" href="#module-doppleriann.utils.logger_config" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="doppleriann.utils.logger_config.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">doppleriann.utils.logger_config.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#doppleriann.utils.logger_config.setup_logging" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="references.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Isidro Gómez-Vargas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

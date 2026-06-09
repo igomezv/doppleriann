@@ -1,0 +1,12 @@
+Development
+===========
+
+This page documents how to work on the project itself.
+
+Suggested topics:
+
+- local setup
+- running tests
+- code style
+- building documentation
+- release process

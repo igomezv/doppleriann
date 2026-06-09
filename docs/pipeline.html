@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipeline &mdash; doppleriann 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Generators" href="data_generators.html" />
+    <link rel="prev" title="Project Structure" href="structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            doppleriann
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#canonical-pipeline">Canonical pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#experiment-scripts">Experiment scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notebooks-and-analysis-scripts">Notebooks and analysis scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">doppleriann</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pipeline</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pipeline.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pipeline">
+<h1>Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> supports an end-to-end workflow for radial-velocity modeling and shell-based inference:</p>
+<ul class="simple">
+<li><p>physics tools for CCF computation, shell-based Doppler injection, and signal analysis</p></li>
+<li><p>data handling for preprocessing and HDF5 dataset generation</p></li>
+<li><p>neural architectures including CNNs, VAEs, MLPs, and KANs</p></li>
+<li><p>analysis utilities for signal recovery, shell extraction, and uncertainty estimation</p></li>
+</ul>
+</section>
+<section id="canonical-pipeline">
+<h2>Canonical pipeline<a class="headerlink" href="#canonical-pipeline" title="Link to this heading"></a></h2>
+<p>The main paper workflow is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">HARPS-N</span> <span class="pre">-&gt;</span> <span class="pre">flux</span> <span class="pre">spectra</span> <span class="pre">-&gt;</span> <span class="pre">temperature</span> <span class="pre">spectra</span> <span class="pre">-&gt;</span> <span class="pre">planetary</span> <span class="pre">injections</span> <span class="pre">+</span> <span class="pre">CCF</span> <span class="pre">RV</span> <span class="pre">-&gt;</span> <span class="pre">shell</span> <span class="pre">HDF5</span> <span class="pre">-&gt;</span> <span class="pre">HO/CV5</span> <span class="pre">experiments</span></code></p>
+<p>Reference experiment folders:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_HO/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_CV/</span></code></p></li>
+</ul>
+</section>
+<section id="experiment-scripts">
+<h2>Experiment scripts<a class="headerlink" href="#experiment-scripts" title="Link to this heading"></a></h2>
+<p>Hold-out scripts (HO):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_HO/cnnShellTemp.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_HO/cnnShellFlux.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_HO/cnnShellDetection.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_hyperparameter_opt/cnnShellOptuna.py</span></code></p></li>
+</ul>
+<p>Cross-validation scripts (CV5):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_CV/cv5fold_cnn.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_CV/cv_cnn_predict.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_CV/cv_cnn_detection.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/cnnShell_CV/join_chunks.py</span></code></p></li>
+</ul>
+</section>
+<section id="notebooks-and-analysis-scripts">
+<h2>Notebooks and analysis scripts<a class="headerlink" href="#notebooks-and-analysis-scripts" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> contains runnable Python analysis scripts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/ccf_calculator.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/shells_plots_on_the_fly.py</span></code></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structure.html" class="btn btn-neutral float-left" title="Project Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_generators.html" class="btn btn-neutral float-right" title="Data Generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Isidro Gómez-Vargas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
