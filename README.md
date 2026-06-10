@@ -248,7 +248,7 @@ Pretrained CV5 inference requires:
 - `experiments/cnnShell_CV/models/models/*.pkl`
 - `experiments/cnnShell_CV/outputs/*_fold*_test_idx.txt`
 
-### Summary of key files
+### Summary of key files for existing experiments
 
 | Path or pattern | Required for | Produced by / source | Notes |
 |---|---|---|---|
@@ -300,10 +300,3 @@ If you use `doppleriann` or the experiment pipeline in academic work, please cit
 }
 ```
 
-## License
-
-Specify the repository license here. For example:
-
-```text
-TODO: Add license information.
-```
