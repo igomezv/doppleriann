@@ -31,6 +31,7 @@ dependencies = [
 [project.optional-dependencies]
 viz = ["plotly>=5.22.0"]
 notebooks = ["jupyterlab>=4.2.0", "ipykernel>=6.29.0"]
+docs = ["sphinx", "sphinx-rtd-theme"]
 dev = ["pytest>=8.2.0", "pre-commit>=3.8.0", "ruff>=0.6.4", "black>=24.8.0"]
 
 all = [

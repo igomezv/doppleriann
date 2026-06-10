@@ -1,1 +1,2 @@
 large_data/*.npy filter=lfs diff=lfs merge=lfs -text
+large_data/*.npz filter=lfs diff=lfs merge=lfs -text
