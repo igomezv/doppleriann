@@ -293,10 +293,10 @@ If you use `doppleriann` or the experiment pipeline in academic work, please cit
 
 ```bibtex
 @article{doppleriann,
-  title   = {Doppler-shift Inference with Artificial Neural Networks},
-  author  = {TODO},
-  journal = {TODO},
-  year    = {TODO}
+  title   = {Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection.},
+  author  = {Gómez-Vargas, I., Dumusque, X., Zhao, Y., Al Moulla, K., \& Cretignier, M.},
+  journal = {TBD},
+  year    = {TBD}
 }
 ```
 
