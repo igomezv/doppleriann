@@ -11,7 +11,8 @@
 - **Physical modeling** — CCF computation, shell-based spectral representations, planetary injection, and periodogram analysis.
 - **Data handling** — processing, filtering, and masking of stellar spectra.
 - **Neural architectures** — CNNs, VAEs, MLPs, and KANs.
-- **Deep-learning features** — regularization, hyperparameter optimization, and uncertainty quantification with Monte Carlo dropout as a heuristic estimate of prediction uncertainty.
+- **Deep-learning features** — regularization and hyperparameter optimization.
+- **Monte Carlo Dropout** — Monte Carlo dropout is implemented as a heuristic uncertainty-quantification method. It provides a measure of prediction variability across stochastic forward passes, not a calibrated predictive uncertainty.
 - **Exploration utilities** — signal recovery, shell extraction, and uncertainty estimation.
 
 ## Repository Scope
