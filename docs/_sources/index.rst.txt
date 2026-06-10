@@ -1,22 +1,47 @@
 doppleriann
 ===========
 
-``doppleriann`` is a Python package for modeling Doppler shifts in
-high-resolution stellar spectra using physically motivated spectral-shell
+**[Site under construction]**
+
+``doppleriann`` is a Python package for modeling Doppler shifts in high-resolution stellar spectra using physically motivated spectral-shell
 representations and deep learning.
 
-The package was developed to support radial-velocity exoplanet searches in the
-presence of stellar variability. It provides tools to construct flux- and
-temperature-based shell representations, compute cross-correlation functions
-(CCFs), inject synthetic planetary Doppler signals, train convolutional neural
-networks, and evaluate planetary recoverability through time-series and
-periodogram analyses.
+The package was developed to support radial-velocity exoplanet searches in the presence of stellar variability. It provides tools to construct flux- and
+temperature-based shell representations, compute cross-correlation functions (CCFs), inject synthetic planetary Doppler signals, train neural
+networks, and perform planetary recovery tests through time-series and periodogram analyses.
 
-This documentation site is still under construction, so some sections may be
-incomplete or updated over time.
+As experimental features ``doppleriann`` also includes other neural networks architectures to train them with spectra or shells.
 
-As experimental features ``doppleriann`` also includes other neural networks architectures to 
-train them with spectra or shells.
+Source code
+-----------
+
+The source code is available on GitHub:
+
+* `GitHub repository <https://github.com/igomezv/doppleriann.git>`_
+* `Download archive <https://github.com/igomezv/doppleriann/archive/refs/heads/master.zip>`_
+
+To clone the repository:
+
+.. code-block:: bash
+
+   git clone https://github.com/igomezv/doppleriann.git
+   cd doppleriann
+
+For setup instructions, see :doc:`installation`.
+
+Main features
+-------------
+
+* Flux-based and temperature-based spectral-shell representations.
+* Weighted and masked shell construction.
+* CCF calculation and radial-velocity, BIS and FMMW extraction.
+* Synthetic planetary signal injection, one single circular system.
+* HARPS-N solar-data preprocessing utilities.
+* CNN architectures for radial-velocity and Doppler-shift prediction.
+* Hold-out and cross-validation training strategies.
+* Monte Carlo dropout inference for predictive uncertainity.
+* Hyperparameter optimization, model training, and evaluation.
+* Reproducible experiment folders for the analyses presented in the paper Gómez-Vargas, I. et al (2026).
 
 Overview
 --------
@@ -36,36 +61,25 @@ The framework is particularly aimed at applications where stellar activity
 dominates the radial-velocity signal and where low-amplitude planetary signals
 must be recovered from real spectroscopic data.
 
-Main features
--------------
+Project Structure
+-------------------
 
-* Flux-based and temperature-based spectral-shell representations.
-* Weighted and masked shell construction.
-* CCF calculation and radial-velocity extraction.
-* Synthetic planetary signal injection.
-* HARPS-N solar-data preprocessing utilities.
-* CNN architectures for radial-velocity and Doppler-shift prediction.
-* Hold-out and cross-validation training strategies.
-* Monte Carlo dropout inference for predictive dispersion estimates.
-* Scripts for hyperparameter optimization, model training, and evaluation.
-* Reproducible experiment folders for the analyses presented in the paper.
+This repository is organized around a small set of top-level directories:
 
-Source code
------------
+- ``doppleriann/`` contains the library code.
+- ``data_generators/`` contains scripts that build intermediate datasets and shell products.
+- ``experiments/`` contains training, evaluation, and inference scripts.
+- ``notebooks/`` contains analysis scripts and plotting utilities.
+- ``data/`` stores smaller generated artifacts used by the workflow.
+- ``large_data/`` stores larger intermediate arrays and HDF5 products.
 
-The source code is available on GitHub:
 
-* `GitHub repository <https://github.com/igomezv/doppleriann.git>`_
-* `Download archive <https://github.com/igomezv/doppleriann/archive/refs/heads/master.zip>`_
+.. figure:: /img/structure.png
 
-To clone the repository:
+Supporting files at the repository root include ``README.md``, ``pyproject.toml``, and ``LICENSE``.
 
-.. code-block:: bash
+The docs are built from ``docs_sphinx/source/``.
 
-   git clone https://github.com/igomezv/doppleriann.git
-   cd doppleriann
-
-For setup instructions, see :doc:`installation`.
 
 Documentation contents
 ----------------------
@@ -74,31 +88,11 @@ Documentation contents
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
+   introduction    
    installation
-   structure
    pipeline
-   data_generators
-   shell_data
-   usage
+   data_generators    
    tutorials
    references
    api
 
-Changelog
----------
-
-Project changes and release notes will be listed here as the package evolves.
-
-Citation
---------
-
-If you use ``doppleriann`` in scientific work, please cite the associated paper:
-
-   Gómez-Vargas et al., *Modeling Doppler Shifts in Radial-Velocity Data with
-   Deep Learning toward Earth-mass Exoplanet Detection*.
-
-License
--------
-
-``doppleriann`` is distributed under the license included in the repository.

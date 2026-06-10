@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction" href="introduction.html" /> 
+    <link rel="next" title="Background" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,13 +43,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
@@ -81,19 +78,42 @@
              
   <section id="doppleriann">
 <h1>doppleriann<a class="headerlink" href="#doppleriann" title="Link to this heading"></a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is a Python package for modeling Doppler shifts in
-high-resolution stellar spectra using physically motivated spectral-shell
+<p><strong>[Site under construction]</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is a Python package for modeling Doppler shifts in high-resolution stellar spectra using physically motivated spectral-shell
 representations and deep learning.</p>
-<p>The package was developed to support radial-velocity exoplanet searches in the
-presence of stellar variability. It provides tools to construct flux- and
-temperature-based shell representations, compute cross-correlation functions
-(CCFs), inject synthetic planetary Doppler signals, train convolutional neural
-networks, and evaluate planetary recoverability through time-series and
-periodogram analyses.</p>
-<p>This documentation site is still under construction, so some sections may be
-incomplete or updated over time.</p>
-<p>As experimental features <code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> also includes other neural networks architectures to
-train them with spectra or shells.</p>
+<p>The package was developed to support radial-velocity exoplanet searches in the presence of stellar variability. It provides tools to construct flux- and
+temperature-based shell representations, compute cross-correlation functions (CCFs), inject synthetic planetary Doppler signals, train neural
+networks, and perform planetary recovery tests through time-series and periodogram analyses.</p>
+<p>As experimental features <code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> also includes other neural networks architectures to train them with spectra or shells.</p>
+<section id="source-code">
+<h2>Source code<a class="headerlink" href="#source-code" title="Link to this heading"></a></h2>
+<p>The source code is available on GitHub:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/igomezv/doppleriann.git">GitHub repository</a></p></li>
+<li><p><a class="reference external" href="https://github.com/igomezv/doppleriann/archive/refs/heads/master.zip">Download archive</a></p></li>
+</ul>
+<p>To clone the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/igomezv/doppleriann.git
+<span class="nb">cd</span><span class="w"> </span>doppleriann
+</pre></div>
+</div>
+<p>For setup instructions, see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>.</p>
+</section>
+<section id="main-features">
+<h2>Main features<a class="headerlink" href="#main-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Flux-based and temperature-based spectral-shell representations.</p></li>
+<li><p>Weighted and masked shell construction.</p></li>
+<li><p>CCF calculation and radial-velocity, BIS and FMMW extraction.</p></li>
+<li><p>Synthetic planetary signal injection, one single circular system.</p></li>
+<li><p>HARPS-N solar-data preprocessing utilities.</p></li>
+<li><p>CNN architectures for radial-velocity and Doppler-shift prediction.</p></li>
+<li><p>Hold-out and cross-validation training strategies.</p></li>
+<li><p>Monte Carlo dropout inference for predictive uncertainity.</p></li>
+<li><p>Hyperparameter optimization, model training, and evaluation.</p></li>
+<li><p>Reproducible experiment folders for the analyses presented in the paper Gómez-Vargas, I. et al (2026).</p></li>
+</ul>
+</section>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is designed around a modular workflow:</p>
@@ -111,48 +131,35 @@ periodogram-based detection criteria.</p></li>
 dominates the radial-velocity signal and where low-amplitude planetary signals
 must be recovered from real spectroscopic data.</p>
 </section>
-<section id="main-features">
-<h2>Main features<a class="headerlink" href="#main-features" title="Link to this heading"></a></h2>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
+<p>This repository is organized around a small set of top-level directories:</p>
 <ul class="simple">
-<li><p>Flux-based and temperature-based spectral-shell representations.</p></li>
-<li><p>Weighted and masked shell construction.</p></li>
-<li><p>CCF calculation and radial-velocity extraction.</p></li>
-<li><p>Synthetic planetary signal injection.</p></li>
-<li><p>HARPS-N solar-data preprocessing utilities.</p></li>
-<li><p>CNN architectures for radial-velocity and Doppler-shift prediction.</p></li>
-<li><p>Hold-out and cross-validation training strategies.</p></li>
-<li><p>Monte Carlo dropout inference for predictive dispersion estimates.</p></li>
-<li><p>Scripts for hyperparameter optimization, model training, and evaluation.</p></li>
-<li><p>Reproducible experiment folders for the analyses presented in the paper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doppleriann/</span></code> contains the library code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_generators/</span></code> contains scripts that build intermediate datasets and shell products.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiments/</span></code> contains training, evaluation, and inference scripts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> contains analysis scripts and plotting utilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/</span></code> stores smaller generated artifacts used by the workflow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">large_data/</span></code> stores larger intermediate arrays and HDF5 products.</p></li>
 </ul>
-</section>
-<section id="source-code">
-<h2>Source code<a class="headerlink" href="#source-code" title="Link to this heading"></a></h2>
-<p>The source code is available on GitHub:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/igomezv/doppleriann.git">GitHub repository</a></p></li>
-<li><p><a class="reference external" href="https://github.com/igomezv/doppleriann/archive/refs/heads/master.zip">Download archive</a></p></li>
-</ul>
-<p>To clone the repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/igomezv/doppleriann.git
-<span class="nb">cd</span><span class="w"> </span>doppleriann
-</pre></div>
-</div>
-<p>For setup instructions, see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>.</p>
+<figure class="align-default">
+<img alt="_images/structure.png" src="_images/structure.png" />
+</figure>
+<p>Supporting files at the repository root include <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, and <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>.</p>
+<p>The docs are built from <code class="docutils literal notranslate"><span class="pre">docs_sphinx/source/</span></code>.</p>
 </section>
 <section id="documentation-contents">
 <h2>Documentation contents<a class="headerlink" href="#documentation-contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Background</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#scientific-motivation">Scientific motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#framework-overview">Framework overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#spectral-shell-representations">Spectral-shell representations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#deep-learning-models">Deep-learning models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#training-validation-and-signal-recovery">Training, validation, and signal recovery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#hyperparameter-optimization">Hyperparameter optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#uncertainty-diagnostics-with-monte-carlo-dropout">Uncertainty diagnostics with Monte Carlo dropout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#uncertainty-diagnostics-of-the-ann">Uncertainty diagnostics of the ANN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#core-modules">Core modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#next-steps">Next steps</a></li>
 </ul>
@@ -164,12 +171,11 @@ must be recovered from real spectroscopic data.</p>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#optional-ccf-backend">Optional CCF backend</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pipeline.html#overview">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html#canonical-pipeline">Canonical pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html#experiment-scripts">Experiment scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pipeline.html#notebooks-and-analysis-scripts">Notebooks and analysis scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#shell-data">Shell Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a><ul>
@@ -178,15 +184,6 @@ must be recovered from real spectroscopic data.</p>
 <li class="toctree-l2"><a class="reference internal" href="data_generators.html#temp-and-kitcat-gen-py"><code class="docutils literal notranslate"><span class="pre">temp_and_kitcat_gen.py</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generators.html#ccf-data-generator-py"><code class="docutils literal notranslate"><span class="pre">ccf_data_generator.py</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_generators.html#test-shell-gen-fixed-py"><code class="docutils literal notranslate"><span class="pre">test_shell_gen_fixed.py</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="shell_data.html#storage-size">Storage size</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#quick-start">Quick start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#typical-workflow">Typical workflow</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
@@ -202,29 +199,13 @@ must be recovered from real spectroscopic data.</p>
 </ul>
 </div>
 </section>
-<section id="changelog">
-<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h2>
-<p>Project changes and release notes will be listed here as the package evolves.</p>
-</section>
-<section id="citation">
-<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
-<p>If you use <code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> in scientific work, please cite the associated paper:</p>
-<blockquote>
-<div><p>Gómez-Vargas et al., <em>Modeling Doppler Shifts in Radial-Velocity Data with
-Deep Learning toward Earth-mass Exoplanet Detection</em>.</p>
-</div></blockquote>
-</section>
-<section id="license">
-<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is distributed under the license included in the repository.</p>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Background" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

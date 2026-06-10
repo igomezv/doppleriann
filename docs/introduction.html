@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction &mdash; doppleriann 1.0.0 documentation</title>
+  <title>Background &mdash; doppleriann 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
@@ -44,24 +44,20 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#scientific-motivation">Scientific motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#framework-overview">Framework overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spectral-shell-representations">Spectral-shell representations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deep-learning-models">Deep-learning models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#training-validation-and-signal-recovery">Training, validation, and signal recovery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hyperparameter-optimization">Hyperparameter optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#uncertainty-diagnostics-with-monte-carlo-dropout">Uncertainty diagnostics with Monte Carlo dropout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uncertainty-diagnostics-of-the-ann">Uncertainty diagnostics of the ANN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#core-modules">Core modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
@@ -81,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Introduction</li>
+      <li class="breadcrumb-item active">Background</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,116 +87,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+  <section id="background">
+<h1>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is a framework for Doppler-shift inference with neural networks.</p>
-<p>It combines spectroscopy preprocessing, shell generation, CCF-based observables,
-planetary-signal injection, and model training and inference for
-stellar-activity and exoplanet studies. The package is designed around the idea
-that physically motivated spectral representations can provide a compact and
-informative description of high-resolution stellar spectra, making them suitable
-for deep-learning models applied to radial-velocity data.</p>
+<p>It combines spectroscopy preprocessing, shell generation, CCF-based observables, planetary-signal injection, and model training and inference for
+stellar-activity and exoplanet studies. The package is designed around the idea that physically motivated spectral representations can provide a compact and
+informative description of high-resolution stellar spectra, making them suitable for deep-learning models applied to radial-velocity data.</p>
 <section id="scientific-motivation">
 <h2>Scientific motivation<a class="headerlink" href="#scientific-motivation" title="Link to this heading"></a></h2>
-<p>The radial-velocity method searches for the small Doppler shifts induced by
-orbiting planets. For Earth-mass planets around solar-type stars, these signals
-can be comparable to, or smaller than, the variability produced by stellar
-activity. This makes it difficult to separate planetary signals from activity,
+<p>The radial-velocity method searches for the small Doppler shifts induced by orbiting planets. For Earth-mass planets around solar-type stars, these signals
+can be comparable to, or smaller than, the variability produced by stellar activity. This makes it difficult to separate planetary signals from activity,
 instrumental effects, and other sources of correlated variability.</p>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> provides tools to explore this problem using real stellar
-spectra, controlled synthetic Doppler-shift injections, and neural-network
-models trained on reduced spectral representations. The framework is intended
-for experiments in which the user wants to test how well Doppler signals can be
-recovered from spectroscopic data after transforming the spectra into more
-compact, physically motivated inputs.</p>
-</section>
-<section id="framework-overview">
-<h2>Framework overview<a class="headerlink" href="#framework-overview" title="Link to this heading"></a></h2>
-<p>The typical workflow implemented in the repository follows these steps:</p>
-<ol class="arabic simple">
-<li><p>load and preprocess stellar spectra;</p></li>
-<li><p>select useful spectral regions through line masks;</p></li>
-<li><p>compute CCF-based radial velocities and related observables;</p></li>
-<li><p>inject synthetic planetary Doppler shifts into the spectra or shell-level
-representations;</p></li>
-<li><p>construct shell representations from flux or line-formation temperature;</p></li>
-<li><p>train neural-network models to predict radial velocity and Doppler shift;</p></li>
-<li><p>evaluate the predictions using hold-out tests, cross-validation, and
-periodogram-based signal recovery.</p></li>
-</ol>
-<p>This structure makes the package useful both as a research code for reproducing
-the experiments in the associated paper and as a starting point for testing
-related spectral representations, model architectures, and validation
-strategies.</p>
+<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> provides tools to explore this problem using real stellar spectra, controlled synthetic Doppler-shift injections, and neural-network
+models trained on reduced spectral representations. The framework is intended for experiments in which the user wants to test how well Doppler signals can be
+recovered from spectroscopic data after transforming the spectra into more compact, physically motivated inputs.</p>
+<p>With the library the results obtained in Gómez-Vargas, et al (2026) can be reproduced using 10-years of HARPS-N solar data. However, the library can be used with different data and also different DL approaches.</p>
 </section>
 <section id="spectral-shell-representations">
 <h2>Spectral-shell representations<a class="headerlink" href="#spectral-shell-representations" title="Link to this heading"></a></h2>
-<p>A central component of <code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is the use of spectral shells. Instead of
-training directly on full high-resolution spectra, the spectra are projected
-onto low-dimensional shell representations. These shells encode how spectral
-information is distributed as a function of quantities such as normalized flux,
-line-formation temperature, and their velocity gradients.</p>
-<p>The repository includes tools for working with both flux-based and
-temperature-based shells. Flux shells provide a compact representation of the
-spectral information commonly used in Doppler measurements, while
-temperature-based shells are designed to include information related to the
-formation depth of spectral lines. Weighted or masked shell representations can
-also be used to emphasize spectral regions with higher Doppler information
-content and reduce the contribution of poorly informative or noisy regions.</p>
+<p>A central component of <code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> is the use of spectral shells. Instead of training directly on full high-resolution spectra, the spectra are projected
+onto low-dimensional shell representations. These shells encode how spectral information is distributed as a function of quantities such as normalized flux,
+line-formation temperature, and their velocity gradients. The repository includes tools for working with both flux-based and temperature-based shells. Flux shells provide a compact representation of the spectral information commonly used in Doppler measurements, while temperature-based shells are designed to include information related to the formation depth of spectral lines. Weighted or masked shell representations can also be used to emphasize spectral regions with higher Doppler information content and reduce the contribution of poorly informative or noisy regions.</p>
 </section>
 <section id="deep-learning-models">
 <h2>Deep-learning models<a class="headerlink" href="#deep-learning-models" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> includes neural-network tools for learning the relation between
-shell representations and Doppler-shift observables. In the main framework,
-convolutional neural networks are trained to predict both a CCF-derived radial
-velocity and an injected Doppler-shift signal. The radial-velocity output
-provides a reference connected to standard spectroscopic measurements, while the
-Doppler-shift output is used to study the recovery of controlled planetary
+<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> includes neural-network tools for learning the relation between shell representations and Doppler-shift observables. In the main framework,
+convolutional neural networks are trained to predict both a CCF-derived radial velocity and an injected Doppler-shift signal. The radial-velocity output
+provides a reference connected to standard spectroscopic measurements, while the Doppler-shift output is used to study the recovery of controlled planetary
 signals.</p>
-<p>The repository also contains scripts associated with model training,
-hyperparameter optimization, and evaluation. These tools are intended to make it
-easier to compare different shell representations, training configurations, and
-validation strategies.</p>
+<p>The repository also contains scripts associated with model training, hyperparameter optimization, and evaluation. These tools are intended to make it
+easier to compare different shell representations, training configurations, and validation strategies.</p>
 </section>
 <section id="training-validation-and-signal-recovery">
 <h2>Training, validation, and signal recovery<a class="headerlink" href="#training-validation-and-signal-recovery" title="Link to this heading"></a></h2>
-<p>The framework supports experiments based on hold-out testing and
-cross-validation. In the hold-out approach, a subset of spectra is kept unseen
-during training and used only for evaluation. In the cross-validation approach,
-the dataset is split into folds so that different subsets are used as unseen
+<p>The framework supports experiments based on hold-out testing and cross-validation. In the hold-out approach, a subset of spectra is kept unseen
+during training and used only for evaluation. In the cross-validation approach, the dataset is split into folds so that different subsets are used as unseen
 evaluation data in different training runs.</p>
-<p>After inference, the predicted Doppler-shift time series can be analyzed with
-periodogram methods to test whether the injected planetary signal is recovered.
-This makes the package useful for injection-recovery experiments, comparison of
-flux- and temperature-based representations, and tests of model robustness.</p>
+<p>After inference, the predicted Doppler-shift time series can be analyzed with periodogram methods to test whether the injected planetary signal is recovered.
+This makes the package useful for injection-recovery experiments, comparison of flux- and temperature-based representations, and tests of model robustness.</p>
 </section>
 <section id="hyperparameter-optimization">
 <h2>Hyperparameter optimization<a class="headerlink" href="#hyperparameter-optimization" title="Link to this heading"></a></h2>
-<p>The repository includes scripts and utilities associated with hyperparameter
-optimization. These components are useful for exploring neural-network
-configurations such as learning rate, batch size, convolutional layers, dense
-layers, and related training parameters.</p>
-<p>In the associated workflow, hyperparameter optimization is used to select stable
-model configurations before running the main hold-out or cross-validation
-experiments. This helps make comparisons between different spectral
-representations more systematic and reduces the dependence on manually selected
+<p>The repository includes scripts and utilities associated with hyperparameter optimization. These components are useful for exploring neural-network
+configurations such as learning rate, batch size, convolutional layers, dense layers, and related training parameters.</p>
+<p>In the associated workflow, hyperparameter optimization is used to select stable model configurations before running the main hold-out or cross-validation
+experiments. This helps make comparisons between different spectral representations more systematic and reduces the dependence on manually selected
 architectures.</p>
 </section>
-<section id="uncertainty-diagnostics-with-monte-carlo-dropout">
-<h2>Uncertainty diagnostics with Monte Carlo dropout<a class="headerlink" href="#uncertainty-diagnostics-with-monte-carlo-dropout" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> also includes tools for estimating prediction variability using
-Monte Carlo dropout. In this approach, dropout remains active during inference
-and multiple stochastic forward passes are performed for the same input. The
-mean of these predictions can be used as the final prediction, while the
-standard deviation across stochastic passes provides a measure of model
+<section id="uncertainty-diagnostics-of-the-ann">
+<h2>Uncertainty diagnostics of the ANN<a class="headerlink" href="#uncertainty-diagnostics-of-the-ann" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> also includes tools for estimating prediction variability using Monte Carlo dropout. In this approach, dropout remains active during inference and multiple stochastic forward passes are performed for the same input. The mean of these predictions can be used as the final prediction, while the standard deviation across stochastic passes provides a measure of model
 dispersion.</p>
-<p>These Monte Carlo dropout values should be interpreted only as diagnostic
-uncertainty estimates. They are not calibrated predictive intervals and should
-not be treated as complete statistical error bars on the recovered radial
-velocities or Doppler shifts. Their main purpose is to diagnose model behavior,
-compare different configurations, identify unstable predictions, and assess the
-relative dispersion of predictions produced by different shell representations
-or training strategies.</p>
+<p>These Monte Carlo dropout values should be interpreted only as diagnostic uncertainty estimates. They are not calibrated predictive intervals and should
+not be treated as complete statistical error bars on the recovered radial velocities or Doppler shifts. Their main purpose is to diagnose model behavior,
+compare different configurations, identify unstable predictions, and assess the relative dispersion of predictions produced by different shell representations or training strategies.</p>
 </section>
 <section id="core-modules">
 <h2>Core modules<a class="headerlink" href="#core-modules" title="Link to this heading"></a></h2>

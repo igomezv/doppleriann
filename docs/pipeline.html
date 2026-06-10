@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pipeline &mdash; doppleriann 1.0.0 documentation</title>
+  <title>Pipeline example &mdash; doppleriann 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
@@ -18,9 +18,7 @@
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data Generators" href="data_generators.html" />
-    <link rel="prev" title="Project Structure" href="structure.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,26 +40,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pipeline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#canonical-pipeline">Canonical pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#experiment-scripts">Experiment scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#notebooks-and-analysis-scripts">Notebooks and analysis scripts</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Pipeline example</a><ul>
+<li><a class="reference internal" href="#canonical-pipeline">Canonical pipeline</a></li>
+<li><a class="reference internal" href="#experiment-scripts">Experiment scripts</a></li>
+<li><a class="reference internal" href="#notebooks-and-analysis-scripts">Notebooks and analysis scripts</a></li>
+<li><a class="reference internal" href="#shell-data">Shell Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
-
+</div>
         </div>
       </div>
     </nav>
@@ -76,7 +65,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Pipeline</li>
+      <li class="breadcrumb-item active">Pipeline example</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/pipeline.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,18 +75,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pipeline">
-<h1>Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading"></a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">doppleriann</span></code> supports an end-to-end workflow for radial-velocity modeling and shell-based inference:</p>
-<ul class="simple">
-<li><p>physics tools for CCF computation, shell-based Doppler injection, and signal analysis</p></li>
-<li><p>data handling for preprocessing and HDF5 dataset generation</p></li>
-<li><p>neural architectures including CNNs, VAEs, MLPs, and KANs</p></li>
-<li><p>analysis utilities for signal recovery, shell extraction, and uncertainty estimation</p></li>
-</ul>
-</section>
+  <section id="pipeline-example">
+<h1>Pipeline example<a class="headerlink" href="#pipeline-example" title="Link to this heading"></a></h1>
 <section id="canonical-pipeline">
 <h2>Canonical pipeline<a class="headerlink" href="#canonical-pipeline" title="Link to this heading"></a></h2>
 <p>The main paper workflow is:</p>
@@ -133,15 +112,23 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">notebooks/shells_plots_on_the_fly.py</span></code></p></li>
 </ul>
 </section>
+<section id="shell-data">
+<h2>Shell Data<a class="headerlink" href="#shell-data" title="Link to this heading"></a></h2>
+<p>Shell datasets are generated by the scripts in <code class="docutils literal notranslate"><span class="pre">data_generators/</span></code>.</p>
+<p>Detailed instructions for each generator script are available in <code class="docutils literal notranslate"><span class="pre">data_generators/data_generator_README.md</span></code>.</p>
+<ul class="simple">
+<li><p>Full paper-scale shell set: about 17 GB.</p></li>
+<li><p>One realization with temperature and flux: about 1.7 GB.</p></li>
+<li><p>Single modality only: about 0.8 GB.</p></li>
+</ul>
+<p>The lighter workflows are usually enough for diagnostics or training a single model.</p>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="structure.html" class="btn btn-neutral float-left" title="Project Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data_generators.html" class="btn btn-neutral float-right" title="Data Generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

@@ -15,10 +15,4 @@ Typical workflow
 4. Run inference or detection-map scripts.
 5. Inspect the results and plots.
 
-Suggested topics:
 
-- loading data
-- preparing features
-- training a model
-- making predictions
-- evaluating results

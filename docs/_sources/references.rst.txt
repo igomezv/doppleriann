@@ -4,8 +4,9 @@ References
 
 Cite doppleriann
 -----------------
+If you use ``doppleriann`` in scientific work, please cite the associated paper:
 
-* Gómez-Vargas, I., Dumusque, X., Zhao, Y., Al Moulla, K., & Cretignier, M. (2026). Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection. **In preparation**.
+* Gómez-Vargas, I., Dumusque, X., Zhao, Y., Al Moulla, K., & Cretignier, M. (2026). Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection. **TBD**.
 
 
 Cite external papers and codes

@@ -18,8 +18,7 @@
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="References" href="references.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,80 +40,157 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure.html">Project Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipeline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_generators.html">Data Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell_data.html">Shell Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#package-modules">Package modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.data.data_loader">Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5_random"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5_random()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_hdf5_data"><code class="docutils literal notranslate"><span class="pre">load_hdf5_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.data_loader.load_and_process_file"><code class="docutils literal notranslate"><span class="pre">load_and_process_file()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.shell_generation.generate_hidden_signals"><code class="docutils literal notranslate"><span class="pre">generate_hidden_signals()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.data.shell_generation.generate_data"><code class="docutils literal notranslate"><span class="pre">generate_data()</span></code></a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#package-modules">Package modules</a><ul>
+<li><a class="reference internal" href="#module-doppleriann.data.data_loader">Data</a><ul>
+<li><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.data_loader.load_shell_astro_datah5_random"><code class="docutils literal notranslate"><span class="pre">load_shell_astro_datah5_random()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.data_loader.load_hdf5_data"><code class="docutils literal notranslate"><span class="pre">load_hdf5_data()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.data_loader.load_and_process_file"><code class="docutils literal notranslate"><span class="pre">load_and_process_file()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D.fit"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D.fit()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D.transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D.transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D.fit_transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MinMaxScaler3D.inverse_transform"><code class="docutils literal notranslate"><span class="pre">MinMaxScaler3D.inverse_transform()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.networks.base_networks">Networks</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-base-classes">DopplerIANN Networks Module - Base Classes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE"><code class="docutils literal notranslate"><span class="pre">SuperVAE</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET"><code class="docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-custom-tensorflow-layers">DopplerIANN Networks Module - Custom TensorFlow Layers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.MCDropout"><code class="docutils literal notranslate"><span class="pre">MCDropout</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.KLDivergenceLayer"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLayer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer"><code class="docutils literal notranslate"><span class="pre">ReconstructionLossLayer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer"><code class="docutils literal notranslate"><span class="pre">Resize1DTensorLayer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.L1LatentRegularization"><code class="docutils literal notranslate"><span class="pre">L1LatentRegularization</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.resize_1d_tensor"><code class="docutils literal notranslate"><span class="pre">resize_1d_tensor()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.net_blocks.sampling"><code class="docutils literal notranslate"><span class="pre">sampling()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-autoencoders">DopplerIANN Networks Module - Autoencoders</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.aes.VaeCNN1D"><code class="docutils literal notranslate"><span class="pre">VaeCNN1D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.aes.AeCNN1D"><code class="docutils literal notranslate"><span class="pre">AeCNN1D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-cnn-architectures">DopplerIANN Networks Module - CNN Architectures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1D"><code class="docutils literal notranslate"><span class="pre">ShellCNN1D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1DDual"><code class="docutils literal notranslate"><span class="pre">ShellCNN1DDual</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2Channel"><code class="docutils literal notranslate"><span class="pre">ShellCNN2Channel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2D"><code class="docutils literal notranslate"><span class="pre">ShellCNN2D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-conditional-vaes">DopplerIANN Networks Module - Conditional VAEs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.cvae.CondVaeCNN1D"><code class="docutils literal notranslate"><span class="pre">CondVaeCNN1D</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-kolmogorov-arnold-networks-kan">DopplerIANN Networks Module - Kolmogorov-Arnold Networks (KAN)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.kann.KAN"><code class="docutils literal notranslate"><span class="pre">KAN</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-networks-module-multilayer-perceptron-mlp">DopplerIANN Networks Module - Multilayer Perceptron (MLP)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.networks.mlp.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D.fit"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D.fit()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D.transform"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D.transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D.fit_transform"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.StandardScaler3D.inverse_transform"><code class="docutils literal notranslate"><span class="pre">StandardScaler3D.inverse_transform()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.physics.CCFcalculator">Physics</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator"><code class="docutils literal notranslate"><span class="pre">CCFcalculator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.CCFcalculator.astro_data"><code class="docutils literal notranslate"><span class="pre">astro_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.inject_planet_at_shell_level"><code class="docutils literal notranslate"><span class="pre">inject_planet_at_shell_level()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.remove_planet_signal_shell_level"><code class="docutils literal notranslate"><span class="pre">remove_planet_signal_shell_level()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.shell_utils.extract_shape_shell"><code class="docutils literal notranslate"><span class="pre">extract_shape_shell()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData"><code class="docutils literal notranslate"><span class="pre">SpectrumData</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.spec_transform.interp_temp_given_flux"><code class="docutils literal notranslate"><span class="pre">interp_temp_given_flux()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann-physics-signal-utilities">DopplerIANN Physics — Signal Utilities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.sinusoidal_model"><code class="docutils literal notranslate"><span class="pre">sinusoidal_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.long_term_remover"><code class="docutils literal notranslate"><span class="pre">long_term_remover()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.remove_strongest_signals"><code class="docutils literal notranslate"><span class="pre">remove_strongest_signals()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.recover_phase_offset"><code class="docutils literal notranslate"><span class="pre">recover_phase_offset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.circ_dist_cycles"><code class="docutils literal notranslate"><span class="pre">circ_dist_cycles()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.periodogram"><code class="docutils literal notranslate"><span class="pre">periodogram()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.generate_periodogram_test"><code class="docutils literal notranslate"><span class="pre">generate_periodogram_test()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.physics.signal_utils.prior_transform"><code class="docutils literal notranslate"><span class="pre">prior_transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D.fit"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D.fit()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D.transform"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D.transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D.fit_transform"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D.fit_transform()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.scalers.MaskedStandardScaler3D.inverse_transform"><code class="docutils literal notranslate"><span class="pre">MaskedStandardScaler3D.inverse_transform()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-doppleriann.utils.logger_config">Utils</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#doppleriann.utils.logger_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.shell_generation.generate_hidden_signals"><code class="docutils literal notranslate"><span class="pre">generate_hidden_signals()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.data.shell_generation.generate_data"><code class="docutils literal notranslate"><span class="pre">generate_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-doppleriann.networks.base_networks">Networks</a><ul>
+<li><a class="reference internal" href="#doppleriann-networks-module-base-classes">DopplerIANN Networks Module - Base Classes</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE"><code class="docutils literal notranslate"><span class="pre">SuperVAE</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE.mcdo_predict"><code class="docutils literal notranslate"><span class="pre">SuperVAE.mcdo_predict()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE.load_model"><code class="docutils literal notranslate"><span class="pre">SuperVAE.load_model()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SuperVAE.model_tf"><code class="docutils literal notranslate"><span class="pre">SuperVAE.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET"><code class="docutils literal notranslate"><span class="pre">SupervisedNET</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET.mcdo_predict"><code class="docutils literal notranslate"><span class="pre">SupervisedNET.mcdo_predict()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET.load_model"><code class="docutils literal notranslate"><span class="pre">SupervisedNET.load_model()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.base_networks.SupervisedNET.model_tf"><code class="docutils literal notranslate"><span class="pre">SupervisedNET.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann-networks-module-custom-tensorflow-layers">DopplerIANN Networks Module - Custom TensorFlow Layers</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.MCDropout"><code class="docutils literal notranslate"><span class="pre">MCDropout</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.MCDropout.call"><code class="docutils literal notranslate"><span class="pre">MCDropout.call()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.MCDropout.get_config"><code class="docutils literal notranslate"><span class="pre">MCDropout.get_config()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.KLDivergenceLayer"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLayer</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.KLDivergenceLayer.call"><code class="docutils literal notranslate"><span class="pre">KLDivergenceLayer.call()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer"><code class="docutils literal notranslate"><span class="pre">ReconstructionLossLayer</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.ReconstructionLossLayer.call"><code class="docutils literal notranslate"><span class="pre">ReconstructionLossLayer.call()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer"><code class="docutils literal notranslate"><span class="pre">Resize1DTensorLayer</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer.call"><code class="docutils literal notranslate"><span class="pre">Resize1DTensorLayer.call()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.Resize1DTensorLayer.get_config"><code class="docutils literal notranslate"><span class="pre">Resize1DTensorLayer.get_config()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.L1LatentRegularization"><code class="docutils literal notranslate"><span class="pre">L1LatentRegularization</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.L1LatentRegularization.call"><code class="docutils literal notranslate"><span class="pre">L1LatentRegularization.call()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.resize_1d_tensor"><code class="docutils literal notranslate"><span class="pre">resize_1d_tensor()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.net_blocks.sampling"><code class="docutils literal notranslate"><span class="pre">sampling()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann-networks-module-autoencoders">DopplerIANN Networks Module - Autoencoders</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.aes.VaeCNN1D"><code class="docutils literal notranslate"><span class="pre">VaeCNN1D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.aes.VaeCNN1D.model_tf"><code class="docutils literal notranslate"><span class="pre">VaeCNN1D.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.aes.AeCNN1D"><code class="docutils literal notranslate"><span class="pre">AeCNN1D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.aes.AeCNN1D.model_tf"><code class="docutils literal notranslate"><span class="pre">AeCNN1D.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann-networks-module-cnn-architectures">DopplerIANN Networks Module - CNN Architectures</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1D"><code class="docutils literal notranslate"><span class="pre">ShellCNN1D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1D.model_tf"><code class="docutils literal notranslate"><span class="pre">ShellCNN1D.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1DDual"><code class="docutils literal notranslate"><span class="pre">ShellCNN1DDual</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN1DDual.model_tf"><code class="docutils literal notranslate"><span class="pre">ShellCNN1DDual.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2Channel"><code class="docutils literal notranslate"><span class="pre">ShellCNN2Channel</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2Channel.model_tf"><code class="docutils literal notranslate"><span class="pre">ShellCNN2Channel.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2D"><code class="docutils literal notranslate"><span class="pre">ShellCNN2D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.cnns.ShellCNN2D.model_tf"><code class="docutils literal notranslate"><span class="pre">ShellCNN2D.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann-networks-module-conditional-vaes">DopplerIANN Networks Module - Conditional VAEs</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.cvae.CondVaeCNN1D"><code class="docutils literal notranslate"><span class="pre">CondVaeCNN1D</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.cvae.CondVaeCNN1D.model_tf"><code class="docutils literal notranslate"><span class="pre">CondVaeCNN1D.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann-networks-module-kolmogorov-arnold-networks-kan">DopplerIANN Networks Module - Kolmogorov-Arnold Networks (KAN)</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.kann.KAN"><code class="docutils literal notranslate"><span class="pre">KAN</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.kann.KAN.univariate_activation"><code class="docutils literal notranslate"><span class="pre">KAN.univariate_activation()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.networks.kann.KAN.model_tf"><code class="docutils literal notranslate"><span class="pre">KAN.model_tf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann-networks-module-multilayer-perceptron-mlp">DopplerIANN Networks Module - Multilayer Perceptron (MLP)</a></li>
+<li><a class="reference internal" href="#doppleriann.networks.mlp.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.networks.mlp.MLP.model_tf"><code class="docutils literal notranslate"><span class="pre">MLP.model_tf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-doppleriann.physics.CCFcalculator">Physics</a><ul>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator"><code class="docutils literal notranslate"><span class="pre">CCFcalculator</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_1"><code class="docutils literal notranslate"><span class="pre">CCFcalculator.calculate_CCF_1()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calculate_CCF_2"><code class="docutils literal notranslate"><span class="pre">CCFcalculator.calculate_CCF_2()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator.Delta_wavelength"><code class="docutils literal notranslate"><span class="pre">CCFcalculator.Delta_wavelength()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator.calc_mask"><code class="docutils literal notranslate"><span class="pre">CCFcalculator.calc_mask()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.CCFcalculator.ccf_calculator"><code class="docutils literal notranslate"><span class="pre">CCFcalculator.ccf_calculator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.physics.CCFcalculator.astro_data"><code class="docutils literal notranslate"><span class="pre">astro_data()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.shell_utils.inject_planet_at_shell_level"><code class="docutils literal notranslate"><span class="pre">inject_planet_at_shell_level()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.shell_utils.remove_planet_signal_shell_level"><code class="docutils literal notranslate"><span class="pre">remove_planet_signal_shell_level()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.shell_utils.extract_shape_shell"><code class="docutils literal notranslate"><span class="pre">extract_shape_shell()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData"><code class="docutils literal notranslate"><span class="pre">SpectrumData</span></code></a><ul>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData.shell_diagram"><code class="docutils literal notranslate"><span class="pre">SpectrumData.shell_diagram()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData.planet_inj"><code class="docutils literal notranslate"><span class="pre">SpectrumData.planet_inj()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData.inject_random_doppler_shifts"><code class="docutils literal notranslate"><span class="pre">SpectrumData.inject_random_doppler_shifts()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.SpectrumData.kitcat_filtering_mask"><code class="docutils literal notranslate"><span class="pre">SpectrumData.kitcat_filtering_mask()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#doppleriann.physics.spec_transform.interp_temp_given_flux"><code class="docutils literal notranslate"><span class="pre">interp_temp_given_flux()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann-physics-signal-utilities">DopplerIANN Physics — Signal Utilities</a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.sinusoidal_model"><code class="docutils literal notranslate"><span class="pre">sinusoidal_model()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.long_term_remover"><code class="docutils literal notranslate"><span class="pre">long_term_remover()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.remove_strongest_signals"><code class="docutils literal notranslate"><span class="pre">remove_strongest_signals()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.recover_phase_offset"><code class="docutils literal notranslate"><span class="pre">recover_phase_offset()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.circ_dist_cycles"><code class="docutils literal notranslate"><span class="pre">circ_dist_cycles()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.periodogram"><code class="docutils literal notranslate"><span class="pre">periodogram()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.generate_periodogram_test"><code class="docutils literal notranslate"><span class="pre">generate_periodogram_test()</span></code></a></li>
+<li><a class="reference internal" href="#doppleriann.physics.signal_utils.prior_transform"><code class="docutils literal notranslate"><span class="pre">prior_transform()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-doppleriann.utils.logger_config">Utils</a><ul>
+<li><a class="reference internal" href="#doppleriann.utils.logger_config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -122,7 +198,7 @@
 </ul>
 </li>
 </ul>
-
+</div>
         </div>
       </div>
     </nav>
@@ -1873,9 +1949,7 @@ using the Generalized Lomb-Scargle (GLS) periodogram.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="references.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 

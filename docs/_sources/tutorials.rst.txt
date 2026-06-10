@@ -1,7 +1,7 @@
 Tutorials
 =========
 
-This page will collect worked examples, walkthroughs, and practical usage notes.
+This page will collect worked examples, walkthroughs, and practical usage notes once the paper is released.
 
 Planned topics:
 
@@ -10,4 +10,3 @@ Planned topics:
 - inference examples
 - evaluation examples
 
-For now, use `usage <usage.html>`_ and `pipeline <pipeline.html>`_ as the main entry points.
