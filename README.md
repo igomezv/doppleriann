@@ -296,8 +296,8 @@ If you use `doppleriann` or the experiment pipeline in academic work, please cit
 @article{doppleriann,
   title   = {Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection.},
   author  = {Gómez-Vargas, I., Dumusque, X., Zhao, Y., Al Moulla, K., \& Cretignier, M.},
-  journal = {TBD},
-  year    = {TBD}
+  journal = {Astronomy & Astrophysics},
+  year    = {2026}
 }
 ```
 
