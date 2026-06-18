@@ -292,6 +292,8 @@ Exact paper reproduction requires the original train/test split files and pretra
 
 If you use `doppleriann` or the experiment pipeline in academic work, please cite the associated paper.
 
+- [**Gómez-Vargas, I.**, Dumusque, X., Zhao, Y., Al Moulla, K. & Cretignier, M. (2026). Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection. Accepted in Astronomy & Astrophysics. arXiv:2606.18464.](https://arxiv.org/abs/2606.18464)
+
 ```bibtex
 @article{doppleriann,
   title   = {Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection.},
