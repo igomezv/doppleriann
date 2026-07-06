@@ -4,7 +4,7 @@
 
 ## Overview
 
-`doppleriann` is a Python package for modeling Doppler shifts in high-resolution stellar spectra using physically motivated spectral-shell representations and deep learning.
+`doppleriann` is a Python package for modeling Doppler shifts in high-resolution stellar spectra using physically motivated spectral-shell representations and deep learning. It contains the methodological framework presented in our paper: [doi.org/10.1051/0004-6361/202659375](https://doi.org/10.1051/0004-6361/202659375).
 
 `doppleriann` provides:
 
