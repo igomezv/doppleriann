@@ -292,14 +292,18 @@ Exact paper reproduction requires the original train/test split files and pretra
 
 If you use `doppleriann` or the experiment pipeline in academic work, please cite the associated paper.
 
-- [**Gómez-Vargas, I.**, Dumusque, X., Zhao, Y., Al Moulla, K. & Cretignier, M. (2026). Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection. Accepted in Astronomy & Astrophysics. arXiv:2606.18464.](https://arxiv.org/abs/2606.18464)
+- [**Gómez-Vargas, I.**, Dumusque, X., Zhao, Y., Al Moulla, K. & Cretignier, M. (2026). Modeling Doppler Shifts in radial-velocity data with deep learning toward Earth-mass exoplanet detection. Astronomy & Astrophysics. 712, A31.](https://www.aanda.org/articles/aa/full_html/2026/08/aa59375-26/aa59375-26.html)
 
 ```bibtex
-@article{doppleriann,
-  title   = {Modeling Doppler Shifts in Radial-Velocity Data with Deep Learning toward Earth-mass Exoplanet Detection.},
-  author  = {Gómez-Vargas, I., Dumusque, X., Zhao, Y., Al Moulla, K., \& Cretignier, M.},
-  journal = {Astronomy & Astrophysics},
-  year    = {2026}
+@article{gomezvargas2026doppleriann,
+	author = {{Gómez-Vargas, Isidro} and {Dumusque, Xavier} and {Zhao, Yinan} and {Al Moulla, Khaled} and {Cretignier, Michael}},
+	title = {Modeling Doppler shifts in radial-velocity data with deep learning toward Earth-mass exoplanet detection},
+	DOI= "10.1051/0004-6361/202659375",
+	url= "https://doi.org/10.1051/0004-6361/202659375",
+	journal = {A\&A},
+	year = 2026,
+	volume = 712,
+	pages = "A31",
 }
 ```
 
